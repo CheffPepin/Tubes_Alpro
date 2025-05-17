@@ -6,20 +6,19 @@ var NMAX int = 6
 
 type tabMinat [NMAX] string 
 
-var kuliner, TI, desain, kesehatan, mekanik, pariwisata, baca, kebun, olahraga, berkarya, jelajah tabMinat
-
-kuliner = tabMinat{"Food Blogger / PR Kuliner", "kepala koki / Supervisor Dapur", "Quality Control Makanan","Chef Inovatif", "Manajer Produksi Kuliner", "Food Stylist / Food Photographer"}
-TI = tabMinat{"Technical Writer / IT Support", "IT Project Manager", "Programmer","UI/UX Designer", "Data Analyst / Software Engineer", "Game Designer"}
-desain = tabMinat{"Art Director", "Creative Designer", "Desainer Marketing Digital","Animator / Motion Graphics Artist", "Desainer UI bebasis Data", "Graphic Designer"}
-kesehatan = tabMinat{"Perawat", "Supervisor Medis", "Analis Kesehatan", "Terapis Seni", "Statistik Kesehatan", "Desainer Edukasi Kesehatan"}
-mekanik = tabMinat{"Sales Engineer Otomotif", "Manajer Bengkel", "Analis Performa Mesin", "Desainer Otomotif", "Teknisi Otomotif", "Modifikator Kendaraan"}
-pariwisata = tabMinat{"Customer Relations Manager", "Manajer Hotel", "Analis Pariwisata", "Event Organizer", "Analis Revenue Hotel", "Desainer Interior Hotel"}
-baca = tabMinat{"Editor / Jurnalis", "Kepala Redaksi", "Peneliti Sastra", "Penulis", "Penulis Edukasi STEM", "Penyair Ilustratif"}
-kebun = tabMinat{"Penyuluh Pertanian", "Manajer Kebun", "Agronomis", "Desainer Lanskap", "Perencana Irigasi", "Fotografer Alam"}
-olahraga = tabMinat{"Instruktur Komunitas", "Pelatih Komunitas", "Analis Kinerja Atlet", "Pembuat Konten Olahraga", "Analis Statistik Olahraga", "Desainer Merchandise Olahraga"}
-berkarya = tabMinat{"Kurator Galeri", "Manajer Studio Seni", "Sejarawan Seni", "Seniman Kontemporer", "Visualis Data Artistik", "Pelukis"}
-jelajah = tabMinat{"Pemandu Wisata", "Manajer Tur", "Peneliti Budaya", "Travel Photographer", "Analis Data Wisata", "Travel Illustrator"}
-
+var (
+	kuliner     = tabMinat{"Food Blogger / PR Kuliner", "Kepala Koki / Supervisor Dapur", "Quality Control Makanan", "Chef Inovatif", "Manajer Produksi Kuliner", "Food Stylist / Food Photographer"}
+	TI          = tabMinat{"Technical Writer / IT Support", "IT Project Manager", "Programmer", "UI/UX Designer", "Data Analyst / Software Engineer", "Game Designer"}
+	desain      = tabMinat{"Art Director", "Creative Designer", "Desainer Marketing Digital", "Animator / Motion Graphics Artist", "Desainer UI berbasis Data", "Graphic Designer"}
+	kesehatan   = tabMinat{"Perawat", "Supervisor Medis", "Analis Kesehatan", "Terapis Seni", "Statistik Kesehatan", "Desainer Edukasi Kesehatan"}
+	mekanik     = tabMinat{"Sales Engineer Otomotif", "Manajer Bengkel", "Analis Performa Mesin", "Desainer Otomotif", "Teknisi Otomotif", "Modifikator Kendaraan"}
+	pariwisata  = tabMinat{"Customer Relations Manager", "Manajer Hotel", "Analis Pariwisata", "Event Organizer", "Analis Revenue Hotel", "Desainer Interior Hotel"}
+	baca        = tabMinat{"Editor / Jurnalis", "Kepala Redaksi", "Peneliti Sastra", "Penulis", "Penulis Edukasi STEM", "Penyair Ilustratif"}
+	kebun       = tabMinat{"Penyuluh Pertanian", "Manajer Kebun", "Agronomis", "Desainer Lanskap", "Perencana Irigasi", "Fotografer Alam"}
+	olahraga    = tabMinat{"Instruktur Komunitas", "Pelatih Komunitas", "Analis Kinerja Atlet", "Pembuat Konten Olahraga", "Analis Statistik Olahraga", "Desainer Merchandise Olahraga"}
+	berkarya    = tabMinat{"Kurator Galeri", "Manajer Studio Seni", "Sejarawan Seni", "Seniman Kontemporer", "Visualis Data Artistik", "Pelukis"}
+	jelajah     = tabMinat{"Pemandu Wisata", "Manajer Tur", "Peneliti Budaya", "Travel Photographer", "Analis Data Wisata", "Travel Illustrator"}
+)
 
 func main() {
 	var nama string
@@ -94,36 +93,39 @@ func daftarBakat() {
 
 }
 
-func rekomendasiKarir(job *string, nMinat, nBakat int) {
+func rekomendasiKarir(job *string, nMinat string, nBakat int) {
+	var daftar tabMinat
 
-	if nMinat == a {
-		job = kuliner[nBakat-1]
-	} else if nMinat == b {
-		job = TI[nBakat-1]
-	}else if nMinat == c {
-		job = desain[nBakat-1]
-	}else if nMinat == d {
-		job = kesehatan[nBakat-1]
-	}else if nMinat == e {
-		job = mekanik[nBakat-1]
-	}else if nMinat == f {
-		job = pariwisata[nBakat-1]
-	}else if nMinat == g {
-		job = baca[nBakat-1]
-	}else if nMinat == h {
-		job = kebun[nBakat-1]
-	}else if nMinat == i {
-		job = olahraga[nBakat-1]
-	}else if nMinat == j {
-		job = berkarya[nBakat-1]
-	} else if nMinat == k {
-		job = jelajah[nBakat-1]
+	if nMinat == "a" {
+		daftar = kuliner
+	} else if nMinat == "b" {
+		daftar = TI
+	} else if nMinat =="c" {
+		daftar = desain
+	} else if nMinat =="d"{
+		daftar = kesehatan
+	} else if nMinat =="e" {
+		daftar = mekanik
+	} else if nMinat =="f" {
+		daftar = pariwisata
+	} else if nMinat =="g" {
+		daftar = baca
+	} else if nMinat =="h" {
+		daftar = kebun
+	} else if nMinat =="i" {
+		daftar = olahraga
+	} else if nMinat == "j" {
+		daftar = berkarya
+	} else if nMinat =="k" {
+		daftar = jelajah
 	} else {
-		job = "Try Again"
+		*job = "Try Again"
 	}
 
-	fmt.Println(job)
-
+	if nBakat >= 1 && nBakat <= NMAX {
+		*job = daftar[nBakat-1]
+	}
 }
+
 
 
