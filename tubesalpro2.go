@@ -2,6 +2,25 @@ package main
 
 import "fmt"
 
+var NMAX int = 6
+
+type tabMinat [NMAX] string 
+
+var kuliner, TI, desain, kesehatan, mekanik, pariwisata, baca, kebun, olahraga, berkarya, jelajah tabMinat
+
+kuliner = tabMinat{"Food Blogger / PR Kuliner", "kepala koki / Supervisor Dapur", "Quality Control Makanan","Chef Inovatif", "Manajer Produksi Kuliner", "Food Stylist / Food Photographer"}
+TI = tabMinat{"Technical Writer / IT Support", "IT Project Manager", "Programmer","UI/UX Designer", "Data Analyst / Software Engineer", "Game Designer"}
+desain = tabMinat{"Art Director", "Creative Designer", "Desainer Marketing Digital","Animator / Motion Graphics Artist", "Desainer UI bebasis Data", "Graphic Designer"}
+kesehatan = tabMinat{"Perawat", "Supervisor Medis", "Analis Kesehatan", "Terapis Seni", "Statistik Kesehatan", "Desainer Edukasi Kesehatan"}
+mekanik = tabMinat{"Sales Engineer Otomotif", "Manajer Bengkel", "Analis Performa Mesin", "Desainer Otomotif", "Teknisi Otomotif", "Modifikator Kendaraan"}
+pariwisata = tabMinat{"Customer Relations Manager", "Manajer Hotel", "Analis Pariwisata", "Event Organizer", "Analis Revenue Hotel", "Desainer Interior Hotel"}
+baca = tabMinat{"Editor / Jurnalis", "Kepala Redaksi", "Peneliti Sastra", "Penulis", "Penulis Edukasi STEM", "Penyair Ilustratif"}
+kebun = tabMinat{"Penyuluh Pertanian", "Manajer Kebun", "Agronomis", "Desainer Lanskap", "Perencana Irigasi", "Fotografer Alam"}
+olahraga = tabMinat{"Instruktur Komunitas", "Pelatih Komunitas", "Analis Kinerja Atlet", "Pembuat Konten Olahraga", "Analis Statistik Olahraga", "Desainer Merchandise Olahraga"}
+berkarya = tabMinat{"Kurator Galeri", "Manajer Studio Seni", "Sejarawan Seni", "Seniman Kontemporer", "Visualis Data Artistik", "Pelukis"}
+jelajah = tabMinat{"Pemandu Wisata", "Manajer Tur", "Peneliti Budaya", "Travel Photographer", "Analis Data Wisata", "Travel Illustrator"}
+
+
 func main() {
 	var nama string
 	var bakat1, bakat2, minat1, minat2 int
