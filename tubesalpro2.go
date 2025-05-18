@@ -32,7 +32,7 @@ func main() {
 	var nama, ans4 string
 	var pekerjaan tabMinat
 	var bakat1, bakat2, minat1, minat2 int
-	var id, nMenu, i int
+	var id, nMenu, i, ans3 int
 
 	menu()
 	fmt.Print("what step would you like to do first? ")
@@ -57,15 +57,23 @@ func main() {
 			}
 
 		case 3:
-			fmt.Println("Pekerjaan apa yang ingin anda jelajahi hari ini?")
-			fmt.Scan(&ans4)
+			fmt.Println("Berdasarkan apa Anda ingin mengkategorikan pekerjaan yang dicari?")
+			fmt.Println("1. Nama")
+			fmt.Println("2. Industri")
+			fmt.Scan(&ans3)
+			if ans3 == 1 {
+				fmt.Println("Pekerjaan apa yang ingin anda jelajahi hari ini?")
+				fmt.Scan(&ans4)
 
-			if sequentialSearch(ans4) == "error" {
-				fmt.Println("maaf pekerjaan yang anda cari tidak ada dalam database kami")
-			} else {
-				fmt.Println(sequentialSearch(ans4))
+				if sequentialSearch(ans4) == "error" {
+					fmt.Println("maaf pekerjaan yang anda cari tidak ada dalam database kami")
+				} else {
+					fmt.Println(sequentialSearch(ans4))
+				}
+			} else if ans3 == 2 {
+				selectionSortIndustri()
+				binSearch()
 			}
-
 		case 4:
 			kecocokanUser(&pekerjaan)
 			selectionSort(&pekerjaan)
