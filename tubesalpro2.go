@@ -14,17 +14,17 @@ type tabMinat [NMAX]jobbie
 
 //aray untuk pekerjaan berdasarkan minat dan bakat
 var industri = []string {"Kuliner", "TI", "Desain", "Kesehatan", "Mekanik", "Pariwisata", "Baca", "Kebun", "Olahraga", "Berkarya", "Jelajah"}
-var kuliner = []string{"Food Blogger", "kepala koki", "Quality Control Makanan", "Chef", "Manajer Produksi Kuliner", "Food Photographer"}
-var TI = []string{"IT Support", "IT Project Manager", "Programmer", "UI/UX Designer", "Software Engineer", "Game Designer"}
-var desain = []string{"Art Director", "Creative Designer", "Desainer Marketing Digital", "Animator", "Desainer UI bebasis Data", "Graphic Designer"}
-var kesehatan = []string{"Perawat", "Supervisor Medis", "Analis Kesehatan", "Terapis Seni", "Statistik Kesehatan", "Desainer Edukasi Kesehatan"}
-var mekanik = []string{"Sales Engineer Otomotif", "Manajer Bengkel", "Analis Performa Mesin", "Desainer Otomotif", "Teknisi Otomotif", "Modifikator Kendaraan"}
-var pariwisata = []string{"Customer Relations Manager", "Manajer Hotel", "Analis Pariwisata", "Event Organizer", "Analis Revenue Hotel", "Desainer Interior Hotel"}
-var baca = []string{"Jurnalis", "Kepala Redaksi", "Peneliti Sastra", "Penulis", "Penulis Edukasi STEM", "Penyair Ilustratif"}
-var kebun = []string{"Penyuluh Pertanian", "Manajer Kebun", "Agronomis", "Desainer Lanskap", "Perencana Irigasi", "Fotografer Alam"}
-var olahraga = []string{"Instruktur Komunitas", "Pelatih Komunitas", "Analis Kinerja Atlet", "Pembuat Konten Olahraga", "Analis Statistik Olahraga", "Desainer Merchandise Olahraga"}
-var berkarya = []string{"Kurator Galeri", "Manajer Studio Seni", "Sejarawan Seni", "Seniman Kontemporer", "Visualis Data Artistik", "Pelukis"}
-var jelajah = []string{"Pemandu Wisata", "Manajer Tur", "Peneliti Budaya", "Travel Photographer", "Analis Data Wisata", "Travel Illustrator"}
+var kuliner = []string{"Food_Blogger", "kepala_koki", "Quality_Control_Makanan", "Chef", "Manajer_Produksi_Kuliner", "Food_Photographer"}
+var TI = []string{"IT_Support", "IT_Project_Manager", "Programmer", "UI/UX_Designer", "Software_Engineer", "Game_Designer"}
+var desain = []string{"Art_Director", "Creative_Designer", "Desainer_Marketing_Digital", "Animator", "Desainer_UI_bebasis_Data", "Graphic_Designer"}
+var kesehatan = []string{"Perawat", "Supervisor_Medis", "Analis_Kesehatan", "Terapis_Seni", "Statistik_Kesehatan", "Desainer_Edukasi_Kesehatan"}
+var mekanik = []string{"Sales_Engineer_Otomotif", "Manajer_Bengkel", "Analis_Performa_Mesin", "Desainer_Otomotif", "Teknisi_Otomotif", "Modifikator_Kendaraan"}
+var pariwisata = []string{"Customer_Relations_Manager", "Manajer_Hotel", "Analis_Pariwisata", "Event_Organizer", "Analis_Revenue_Hotel", "Desainer_Interior_Hotel"}
+var baca = []string{"Jurnalis", "Kepala_Redaksi", "Peneliti_Sastra", "Penulis", "Penulis_Edukasi_STEM", "Penyair_Ilustratif"}
+var kebun = []string{"Penyuluh_Pertanian", "Manajer_Kebun", "Agronomis", "Desainer_Lanskap", "Perencana_Irigasi", "Fotografer_Alam"}
+var olahraga = []string{"Instruktur_Komunitas", "Pelatih_Komunitas", "Analis_Kinerja_Atlet", "Pembuat_Konten_Olahraga", "Analis_Statistik_Olahraga", "Desainer_Merchandise_Olahraga"}
+var berkarya = []string{"Kurator_Galeri", "Manajer_Studio_Seni", "Sejarawan_Seni", "Seniman_Kontemporer", "Visualis_Data_Artistik", "Pelukis"}
+var jelajah = []string{"Pemandu_Wisata", "Manajer_Tur", "Peneliti_Budaya", "Travel_Photographer", "Analis_Data_Wisata", "Travel_Illustrator"}
 
 //array
 
@@ -276,56 +276,7 @@ func sequentialSearch(n string) string {
 	return idx
 }
 
-//untuk menu 4
-//selection sort untuk berdasarkan kecocokan, binary untuk gaji
 
-func kecocokanUser(job *tabMinat) {
-	var i, n, x int
-
-	n = 4
-
-	fmt.Println()
-	fmt.Println("dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
-
-	for i = 0; i < 4; i++ {
-		fmt.Printf("%d. %s\n", i+1, job[i].title)
-	}
-
-	for i = 0; i < 4; i++ {
-		fmt.Printf("urut no %d?", i+1)
-		fmt.Scan(&x)
-		job[x-1].id = job[x-1].id + n
-		n--
-	}
-
-}
-
-func selectionSort(job *tabMinat) {
-	var idxMax, i, pass int
-	var temp jobbie
-
-	pass = 1
-
-	for pass < 4 {
-		idxMax = pass - 1
-		i = pass
-
-		for i < 4 {
-			if (job[i].id - job[i].kodeUnik) > (job[idxMax].id - job[idxMax].kodeUnik) {
-				idxMax = i
-			}
-			i++
-		}
-
-		temp = job[idxMax]
-		job[idxMax] = job[pass-1]
-		job[pass-1] = temp
-
-		pass++
-
-	}
-
-}
 //sorting list industri
 func selectionSortIndustri() {
 	var idxMin, i, pass int
@@ -457,4 +408,54 @@ func binSearch(){
 }
 
 
+//untuk menu 4
+//selection sort untuk berdasarkan kecocokan, binary untuk gaji
+
+func kecocokanUser(job *tabMinat) {
+	var i, n, x int
+
+	n = 4
+
+	fmt.Println()
+	fmt.Println("dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
+
+	for i = 0; i < 4; i++ {
+		fmt.Printf("%d. %s\n", i+1, job[i].title)
+	}
+
+	for i = 0; i < 4; i++ {
+		fmt.Printf("urut no %d?", i+1)
+		fmt.Scan(&x)
+		job[x-1].id = job[x-1].id + n
+		n--
+	}
+
+}
+
+func selectionSort(job *tabMinat) {
+	var idxMax, i, pass int
+	var temp jobbie
+
+	pass = 1
+
+	for pass < 4 {
+		idxMax = pass - 1
+		i = pass
+
+		for i < 4 {
+			if (job[i].id - job[i].kodeUnik) > (job[idxMax].id - job[idxMax].kodeUnik) {
+				idxMax = i
+			}
+			i++
+		}
+
+		temp = job[idxMax]
+		job[idxMax] = job[pass-1]
+		job[pass-1] = temp
+
+		pass++
+
+	}
+
+}
 
