@@ -12,20 +12,23 @@ type jobbie struct {
 
 type tabMinat [NMAX]jobbie
 
-var kuliner = []string{"Food Blogger / PR Kuliner", "kepala koki / Supervisor Dapur", "Quality Control Makanan", "Chef Inovatif", "Manajer Produksi Kuliner", "Food Stylist / Food Photographer"}
-var TI = []string{"Technical Writer / IT Support", "IT Project Manager", "Programmer", "UI/UX Designer", "Data Analyst / Software Engineer", "Game Designer"}
-var desain = []string{"Art Director", "Creative Designer", "Desainer Marketing Digital", "Animator / Motion Graphics Artist", "Desainer UI bebasis Data", "Graphic Designer"}
+//aray untuk pekerjaan berdasarkan minat dan bakat
+var kuliner = []string{"Food Blogger", "kepala koki", "Quality Control Makanan", "Chef", "Manajer Produksi Kuliner", "Food Photographer"}
+var TI = []string{"IT Support", "IT Project Manager", "Programmer", "UI/UX Designer", "Software Engineer", "Game Designer"}
+var desain = []string{"Art Director", "Creative Designer", "Desainer Marketing Digital", "Animator", "Desainer UI bebasis Data", "Graphic Designer"}
 var kesehatan = []string{"Perawat", "Supervisor Medis", "Analis Kesehatan", "Terapis Seni", "Statistik Kesehatan", "Desainer Edukasi Kesehatan"}
 var mekanik = []string{"Sales Engineer Otomotif", "Manajer Bengkel", "Analis Performa Mesin", "Desainer Otomotif", "Teknisi Otomotif", "Modifikator Kendaraan"}
 var pariwisata = []string{"Customer Relations Manager", "Manajer Hotel", "Analis Pariwisata", "Event Organizer", "Analis Revenue Hotel", "Desainer Interior Hotel"}
-var baca = []string{"Editor / Jurnalis", "Kepala Redaksi", "Peneliti Sastra", "Penulis", "Penulis Edukasi STEM", "Penyair Ilustratif"}
+var baca = []string{"Jurnalis", "Kepala Redaksi", "Peneliti Sastra", "Penulis", "Penulis Edukasi STEM", "Penyair Ilustratif"}
 var kebun = []string{"Penyuluh Pertanian", "Manajer Kebun", "Agronomis", "Desainer Lanskap", "Perencana Irigasi", "Fotografer Alam"}
 var olahraga = []string{"Instruktur Komunitas", "Pelatih Komunitas", "Analis Kinerja Atlet", "Pembuat Konten Olahraga", "Analis Statistik Olahraga", "Desainer Merchandise Olahraga"}
 var berkarya = []string{"Kurator Galeri", "Manajer Studio Seni", "Sejarawan Seni", "Seniman Kontemporer", "Visualis Data Artistik", "Pelukis"}
 var jelajah = []string{"Pemandu Wisata", "Manajer Tur", "Peneliti Budaya", "Travel Photographer", "Analis Data Wisata", "Travel Illustrator"}
 
+//array
+
 func main() {
-	var nama string
+	var nama, ans4 string
 	var pekerjaan tabMinat
 	var bakat1, bakat2, minat1, minat2 int
 	var id, nMenu, i int
@@ -50,6 +53,16 @@ func main() {
 
 			for i = 0; i < 4; i++ {
 				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
+			}
+
+		case 3:
+			fmt.Println("Pekerjaan apa yang ingin anda jelajahi hari ini?")
+			fmt.Scan(&ans4)
+
+			if sequentialSearch(ans4) == "error" {
+				fmt.Println("maaf pekerjaan yang anda cari tidak ada dalam database kami")
+			} else {
+				fmt.Println(sequentialSearch(ans4))
 			}
 
 		case 4:
@@ -126,7 +139,7 @@ func daftarBakat() {
 	fmt.Println("3. Kemampuan analitis")
 	fmt.Println("4. Kreativitas")
 	fmt.Println("5. Bakat Matematika")
-	fmt.Println("6. Bakat seni")
+	fmt.Println("6. Bakat seni")
 
 }
 
@@ -175,6 +188,93 @@ func rekomendasiKarir(job *jobbie, nMinat, nBakat int) {
 
 }
 
+//untuk menu 3
+// sequential search untuk jalur karir
+
+func sequentialSearch(n string) string {
+	var i int
+	var idx string = "error"
+
+	for i = 0; i < 6; i++ {
+		if kuliner[i] == n {
+			idx = kuliner[i]
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if TI[i] == n {
+				idx = TI[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if desain[i] == n {
+				idx = desain[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if kesehatan[i] == n {
+				idx = kesehatan[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if mekanik[i] == n {
+				idx = mekanik[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if pariwisata[i] == n {
+				idx = pariwisata[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if kebun[i] == n {
+				idx = kebun[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if olahraga[i] == n {
+				idx = olahraga[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if berkarya[i] == n {
+				idx = berkarya[i]
+			}
+		}
+	}
+
+	if idx == "error" {
+		for i = 0; i < 6; i++ {
+			if jelajah[i] == n {
+				idx = jelajah[i]
+			}
+		}
+	}
+	return idx
+}
+
 //untuk menu 4
 //selection sort untuk berdasarkan kecocokan, binary untuk gaji
 
@@ -221,5 +321,7 @@ func selectionSort(job *tabMinat) {
 		job[pass-1] = temp
 
 		pass++
+
 	}
+
 }
