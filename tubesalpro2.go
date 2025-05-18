@@ -325,3 +325,135 @@ func selectionSort(job *tabMinat) {
 	}
 
 }
+//sorting list industri
+func selectionSortIndustri() {
+	var idxMin, i, pass int
+	var temp string
+
+	pass = 0
+	for pass < 10 { 
+		idxMin = pass
+		i = pass + 1
+
+		for i < 11 {
+			if industri[i] < industri[idxMin] {
+				idxMin = i
+			}
+			i++
+		}
+
+		temp = industri[idxMin]
+		industri[idxMin] = industri[pass]
+		industri[pass] = temp
+
+		pass++
+	}
+}
+
+//binary search untuk pekerjaan sesuai industri
+func binSearch(){
+	var left, mid, right int 
+	var i, j int
+	var d string 
+	
+	fmt.Println("Berikut daftar Industri:")
+	for i < 11 {
+		fmt.Printf("%d. %s\n", industriN[i], industri[i])
+		i++
+	}
+	fmt.Print("Apa industri yang Anda cari? ")
+	fmt.Scan(&d)
+	
+	
+	left = 0
+	right = 10 
+	mid = (left+right)/2
+	
+	for left <= right && industri[mid] != d {
+		if d < industri[mid] {
+			right = mid -1
+		} else {
+			left = mid + 1
+		}
+		mid = (left+right)/2
+	}
+	 
+	if mid > -1 && industri[mid] == d {
+		fmt.Printf("Industri yang anda pilih adalah %s, berikut pekerjaannya:\n", d)
+		i = 0
+		if d == "Kuliner" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, kuliner[i])
+				i++
+			}
+		} else if d == "TI" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, TI[i])
+				i++
+			}
+			fmt.Printf("%d. %s\n", i+1, jelajah[4])
+		} else if d == "Desain" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, desain[i])
+				i++
+			}
+			for j = 3; j <= 5;j++ {
+				fmt.Printf("%d. %s\n", i+1, berkarya[j])
+				i++
+			}
+			fmt.Printf("%d. %s\n", i+1, jelajah[5])
+		} else if d == "Kesehatan" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, kesehatan[i])
+				i++
+			}
+		} else if d == "Mekanik" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, mekanik[i])
+				i++
+			}
+		} else if d == "Pariwisata" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, pariwisata[i])
+				i++
+			}
+			for j = 1; j < 4;j++ {
+				fmt.Printf("%d. %s\n", i+1, berkarya[j])
+				i++
+			}
+		} else if d == "Baca" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, baca[i])
+				i++
+			}
+		} else if d == "Kebun" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, kebun[i])
+				i++
+			}
+		} else if d == "Olahraga" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, olahraga[i])
+				i++
+			}
+		} else if d == "Berkarya" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, berkarya[i])
+				i++
+			}
+			fmt.Printf("%d. %s\n", i+1, jelajah[3])
+			
+		} else if d == "Jelajah" {
+			for i <= 5 {
+				fmt.Printf("%d. %s\n", i+1, jelajah[i])
+				i++
+			}
+		}
+	} else {
+		fmt.Println("Industri tidak ditemukan.")
+	}
+	
+}
+
+
+
