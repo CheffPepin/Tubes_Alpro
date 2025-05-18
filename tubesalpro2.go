@@ -13,6 +13,7 @@ type jobbie struct {
 type tabMinat [NMAX]jobbie
 
 //aray untuk pekerjaan berdasarkan minat dan bakat
+var industriN = []int {1,2,3,4,5,6,7,8,9,10,11}
 var industri = []string {"Kuliner", "TI", "Desain", "Kesehatan", "Mekanik", "Pariwisata", "Baca", "Kebun", "Olahraga", "Berkarya", "Jelajah"}
 var kuliner = []string{"Food_Blogger", "kepala_koki", "Quality_Control_Makanan", "Chef", "Manajer_Produksi_Kuliner", "Food_Photographer"}
 var TI = []string{"IT_Support", "IT_Project_Manager", "Programmer", "UI/UX_Designer", "Software_Engineer", "Game_Designer"}
