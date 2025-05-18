@@ -36,7 +36,7 @@ func main() {
 	var id, nMenu, i, ans3 int
 
 	menu()
-	fmt.Print("what step would you like to do first? ")
+	fmt.Print("What step would you like to do first? ")
 	fmt.Scan(&nMenu)
 
 	for nMenu != 6 {
@@ -47,7 +47,7 @@ func main() {
 
 		case 2:
 			fmt.Println()
-			fmt.Println("berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
+			fmt.Println("Berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
 			rekomendasiKarir(&pekerjaan[0], minat1, bakat1)
 			rekomendasiKarir(&pekerjaan[1], minat2, bakat2)
 			rekomendasiKarir(&pekerjaan[2], minat1, bakat2)
@@ -426,7 +426,7 @@ func kecocokanUser(job *tabMinat) {
 	n = 4
 
 	fmt.Println()
-	fmt.Println("dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
+	fmt.Println("Dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
 
 	for i = 0; i < 4; i++ {
 		fmt.Printf("%d. %s\n", i+1, job[i].title)
