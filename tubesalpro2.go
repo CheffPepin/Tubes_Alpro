@@ -67,7 +67,7 @@ func main() {
 				fmt.Scan(&ans4)
 
 				if sequentialSearch(ans4) == "error" {
-					fmt.Println("maaf pekerjaan yang anda cari tidak ada dalam database kami")
+					fmt.Println("Maaf pekerjaan yang anda cari tidak ada dalam database kami")
 				} else {
 					fmt.Println(sequentialSearch(ans4))
 				}
@@ -78,7 +78,7 @@ func main() {
 		case 4:
 			kecocokanUser(&pekerjaan)
 			selectionSort(&pekerjaan)
-			fmt.Println("berikut daftar pekerjaan yang apling cocok denganmu! ")
+			fmt.Println("Berikut daftar pekerjaan yang apling cocok denganmu! ")
 			for i = 0; i < 4; i++ {
 				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
 			}
