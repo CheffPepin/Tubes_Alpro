@@ -12,10 +12,10 @@ type jobbie struct {
 }
 
 type dataD struct {
-	nama string
-	nim int
-	minat, bakat int 
-	karir string 
+	nama         string
+	nim          int
+	minat, bakat int
+	karir        string
 }
 
 type tabProfile [NMAX]dataD
@@ -36,10 +36,10 @@ var berkarya = []jobbie{{"Kurator_Galeri", 0, 110, 12500000}, {"Manajer_Studio_S
 var jelajah = []jobbie{{"Pemandu_Wisata", 0, 120, 4000000}, {"Manajer_Tur", 0, 120, 21000000}, {"Peneliti_Budaya", 0, 120, 7500000}, {"Travel_Photographer", 0, 120, 5125000}, {"Analis_Data_Wisata", 0, 120, 6190000}, {"Travel_Illustrator", 0, 120, 4725000}}
 
 func main() {
-	var ans4, ans5 string
-	var pekerjaan tabMinat
+	var ans4 string
+	var pekerjaan, dataPekerjaan tabMinat
 	var profile tabProfile
-	var nMenu, i, ans3 int
+	var nMenu, i, ans3, min, max, N, ans5 int
 
 	menu()
 	fmt.Print("what step would you like to do first? ")
@@ -59,10 +59,10 @@ func main() {
 			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[3], profile[1].minat, profile[0].bakat)
 
-			for i = 0; i < 4 i++ {
+			for i = 0; i < 4; i++ {
 				profile[i].karir = pekerjaan[i].title
 			}
-			
+
 			for i = 0; i < 4; i++ {
 				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
 			}
@@ -91,16 +91,33 @@ func main() {
 				binSearch()
 			}
 		case 4:
-			fmt.Println("Berdasarkan apa Anda ingin mengkategorikan pekerjaan yang dicari?")
-			fmt.Println("1. Nama")
-			fmt.Println("2. Industri")
+			fmt.Println("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda?")
+			fmt.Println("1. Kecocokan minat dan bakat")
+			fmt.Println("2. Gaji")
 			fmt.Scan(&ans5)
 
-			kecocokanUser(&pekerjaan)
-			selectionSort(&pekerjaan)
-			fmt.Println("berikut daftar pekerjaan yang apling cocok denganmu! ")
-			for i = 0; i < 4; i++ {
-				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
+			if ans5 == 1 {
+				kecocokanUser(&pekerjaan)
+				selectionSort(&pekerjaan)
+				fmt.Println("berikut daftar pekerjaan yang apling cocok denganmu! ")
+				for i = 0; i < 4; i++ {
+					fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
+				}
+			} else if ans5 == 2 {
+				fmt.Println("Masukkan range gaji yang ingin anda cari")
+				fmt.Print("Range gaji minimum: ")
+				fmt.Scan(&min)
+				fmt.Print("Range gaji maximum: ")
+				fmt.Scan(&max)
+
+				isInRange(&dataPekerjaan, &N, min, max)
+				InsertionSort(&dataPekerjaan, N)
+
+				fmt.Println("Berikut data pekerjaan yang sesuai dengan range gaji yang anda inginkan!")
+
+				for i = 0; i < N; i++ {
+					fmt.Printf("| %-2d | %-30s | %-12d |\n", i+1, dataPekerjaan[i].title, dataPekerjaan[i].gaji)
+				}
 			}
 		}
 
@@ -126,8 +143,8 @@ func menu() {
 }
 
 func inputData(D *tabProfile) {
-	var i int 
-	
+	var i int
+
 	fmt.Print("Nama: ")
 	fmt.Scan(&D[i].nama)
 
@@ -480,77 +497,77 @@ func isInRange(masukRange *tabMinat, n *int, batasBawah, batasAtas int) {
 	var i int
 	*n = 0
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if kuliner[i].gaji >= batasBawah && kuliner[i].gaji < batasAtas {
 			masukRange[*n] = kuliner[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if TI[i].gaji >= batasBawah && TI[i].gaji < batasAtas {
 			masukRange[*n] = TI[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if desain[i].gaji >= batasBawah && desain[i].gaji < batasAtas {
 			masukRange[*n] = desain[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if kesehatan[i].gaji >= batasBawah && kesehatan[i].gaji < batasAtas {
 			masukRange[*n] = kesehatan[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if mekanik[i].gaji >= batasBawah && mekanik[i].gaji < batasAtas {
 			masukRange[*n] = mekanik[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if pariwisata[i].gaji >= batasBawah && pariwisata[i].gaji < batasAtas {
 			masukRange[*n] = pariwisata[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if olahraga[i].gaji >= batasBawah && olahraga[i].gaji < batasAtas {
 			masukRange[*n] = olahraga[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if baca[i].gaji >= batasBawah && baca[i].gaji < batasAtas {
 			masukRange[*n] = baca[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if jelajah[i].gaji >= batasBawah && jelajah[i].gaji < batasAtas {
 			masukRange[*n] = jelajah[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if kebun[i].gaji >= batasBawah && kebun[i].gaji < batasAtas {
 			masukRange[*n] = kebun[i]
 			*n++
 		}
 	}
 
-	for i = 0; i <6; i++ {
+	for i = 0; i < 6; i++ {
 		if berkarya[i].gaji >= batasBawah && berkarya[i].gaji < batasAtas {
 			masukRange[*n] = berkarya[i]
 			*n++
@@ -558,7 +575,7 @@ func isInRange(masukRange *tabMinat, n *int, batasBawah, batasAtas int) {
 	}
 }
 
-func InsertionSort(masukRange tabMinat, n int) {
+func InsertionSort(masukRange *tabMinat, n int) {
 	var i, pass int
 	var temp jobbie
 
