@@ -127,6 +127,7 @@ func main() {
 		menu()
 		fmt.Print("Apa langkah selanjutnya? ")
 		fmt.Scan(&nMenu)
+		fmt.Println()
 
 	}
 
