@@ -319,7 +319,7 @@ func binSearch(){
 	
 	fmt.Println("Berikut daftar Industri:")
 	for i < 11 {
-		fmt.Printf("%d. %s\n", industriN[i], industri[i])
+		fmt.Printf("%d. %s\n", i+1, industri[i])
 		i++
 	}
 	fmt.Print("Apa industri yang Anda cari? ")
