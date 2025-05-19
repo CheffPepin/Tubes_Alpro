@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const NMAX int = 6
+const NMAX int = 100
 
 type jobbie struct {
 	title    string
