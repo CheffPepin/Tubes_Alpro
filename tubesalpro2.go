@@ -59,6 +59,10 @@ func main() {
 			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[3], profile[1].minat, profile[0].bakat)
 
+			for i = 0; i < 4 i++ {
+				profile[i].karir = pekerjaan[i].title
+			}
+			
 			for i = 0; i < 4; i++ {
 				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
 			}
