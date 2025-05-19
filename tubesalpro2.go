@@ -121,14 +121,26 @@ func main() {
 			}
 
 		case 5:
-			iuytredsdfguiuytrd
+			
 		}
+
+		case 6 :
+			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda?")
+			fmt.Println("1. Ya")
+			fmt.Println("2. Tidak")
+			fmt.Scan(&ans6)
+			if ans6 == 1 {
+				editPekerjaan(profile)
+			} 
+			for i = 0; i < 4; i++ {
+				fmt.Printf("%d. %s\n", i+1, p[i].karir)
 
 		fmt.Println()
 		menu()
 		fmt.Print("Apa langkah selanjutnya? ")
 		fmt.Scan(&nMenu)
 		fmt.Println()
+		
 
 	}
 
@@ -604,6 +616,39 @@ func InsertionSort(masukRange *tabMinat, n int) {
 
 }
 
+func editPekerjaan(p tabProfile) {
+	var ansD int
+	fmt.Println("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
+	fmt.Println("1. Menghapus")
+	fmt.Println("2. Menambahkan")
+	fmt.Scan(&ansD)
+	if ansD == 1 {
+		hapusP(p)
+	} else if ansD == 2 {
+		tambahP(p)
+	}
+}
+
+func hapusP(p *tabProfile){
+	var i, n int 
+	fmt.Println("Pekerjaan berapa yang Anda ingin hapus?")
+	n = 4 
+	for i = 0; i < 4; i++ {
+		fmt.Printf("%d. %s\n", i+1, p[i].karir)
+	}
+	fmt.Scan(&hapus)
+	
+	if hapus < n {
+		i = hapus - 1
+		for i < n {
+			p[i] = p[i+1]
+			i--
+		}
+		n--
+	} else {
+		n--
+	}
+}
 //menu 5
 
 func statistik() {
