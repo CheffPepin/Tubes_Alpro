@@ -21,11 +21,11 @@ var desain = []jobbie{"Art_Director", "Creative_Designer", "Desainer_Marketing_D
 var kesehatan = []jobbie{"Perawat", "Supervisor_Medis", "Analis_Kesehatan", "Terapis_Seni", "Statistik_Kesehatan", "Desainer_Edukasi_Kesehatan"}
 var mekanik = []jobbie{"Sales_Engineer_Otomotif", "Manajer_Bengkel", "Analis_Performa_Mesin", "Desainer_Otomotif", "Teknisi_Otomotif", "Modifikator_Kendaraan"}
 var pariwisata = []jobbie{"Customer_Relations_Manager", "Manajer_Hotel", "Analis_Pariwisata", "Event_Organizer", "Analis_Revenue_Hotel", "Desainer_Interior_Hotel"}
-var baca = []jobbie{"Jurnalis", "Kepala_Redaksi", "Peneliti_Sastra", "Penulis", "Penulis_Edukasi_STEM", "Penyair_Ilustratif"}
-var kebun = []jobbie{"Penyuluh_Pertanian", "Manajer_Kebun", "Agronomis", "Desainer_Lanskap", "Perencana_Irigasi", "Fotografer_Alam"}
-var olahraga = []jobbie{"Instruktur_Komunitas", "Pelatih_Komunitas", "Analis_Kinerja_Atlet", "Pembuat_Konten_Olahraga", "Analis_Statistik_Olahraga", "Desainer_Merchandise_Olahraga"}
-var berkarya = []jobbie{"Kurator_Galeri", "Manajer_Studio_Seni", "Sejarawan_Seni", "Seniman_Kontemporer", "Visualis_Data_Artistik", "Pelukis"}
-var jelajah = []jobbie{"Pemandu_Wisata", "Manajer_Tur", "Peneliti_Budaya", "Travel_Photographer", "Analis_Data_Wisata", "Travel_Illustrator"}
+var baca = []jobbie{{"Jurnalis", 0, 77, 6000000}, {"Kepala_Redaksi",0,77,9500000},{"Peneliti_Sastra", 0, 77, 7000000}, {"Penulis", 0, 77, 4500000},{ "Penulis_Edukasi_STEM", 0, 77, 5500000}, {"Penyair_Ilustratif",0,77,4725000}
+var kebun = []jobbie{{"Penyuluh_Pertanian", 0, 88, 4000000}, {"Manajer_Kebun",0,88,16000000},{"Agronomis",0,88,5280000},{"Desainer_Lanskap", 0, 88, 9019437}, {"Perencana_Irigasi",0,88, 6095000}, {"Fotografer_Alam",0,88,5125000}}
+var olahraga = []jobbie{{"Instruktur_Komunitas",0,99,4720820},{"Pelatih_Komunitas",0,99,5375000},{"Analis_Kinerja_Atlet",0,99, 10145563},{"Pembuat_Konten_Olahraga",0,99,4700000},{"Analis_Statistik_Olahraga",0,99, 10145563}, {"Desainer_Merchandise_Olahraga",0,99,6190000}}
+var berkarya = []jobbie{{"Kurator_Galeri",0,110,12500000},{"Manajer_Studio_Seni",0,110, 21000000},{"Sejarawan_Seni",0,110, 7500000},{"Seniman_Kontemporer",0,110,7500000},{"Visualis_Data_Artistik",0,110, 6190000},{"Pelukis", 0, 110, 7500000}}
+var jelajah = []jobbie{{"Pemandu_Wisata",0,120, 4000000},{"Manajer_Tur",0,120, 21000000},{"Peneliti_Budaya",0,120, 7500000},{"Travel_Photographer",0,120, 5125000},{"Analis_Data_Wisata",0,120, 6190000},{"Travel_Illustrator",0,120, 4725000}}
 //array
 
 func main() {
