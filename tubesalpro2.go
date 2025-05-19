@@ -11,6 +11,14 @@ type jobbie struct {
 	gaji     int
 }
 
+type dataD struct {
+	nama string
+	nim int
+	minat, bakat int 
+	karir string 
+}
+
+type tabProfile [NMAX]dataD
 type tabMinat [NMAX]jobbie
 
 //aray
@@ -28,10 +36,10 @@ var berkarya = []jobbie{{"Kurator_Galeri", 0, 110, 12500000}, {"Manajer_Studio_S
 var jelajah = []jobbie{{"Pemandu_Wisata", 0, 120, 4000000}, {"Manajer_Tur", 0, 120, 21000000}, {"Peneliti_Budaya", 0, 120, 7500000}, {"Travel_Photographer", 0, 120, 5125000}, {"Analis_Data_Wisata", 0, 120, 6190000}, {"Travel_Illustrator", 0, 120, 4725000}}
 
 func main() {
-	var nama, ans4, ans5 string
+	var ans4, ans5 string
 	var pekerjaan tabMinat
-	var bakat1, bakat2, minat1, minat2 int
-	var id, nMenu, i, ans3 int
+	var profile tabProfile
+	var nMenu, i, ans3 int
 
 	menu()
 	fmt.Print("what step would you like to do first? ")
@@ -41,15 +49,15 @@ func main() {
 		switch nMenu {
 		case 1:
 			fmt.Println()
-			inputData(&id, &nama, &minat1, &minat2, &bakat1, &bakat2)
+			inputData(&profile)
 
 		case 2:
 			fmt.Println()
 			fmt.Println("berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
-			rekomendasiKarir(&pekerjaan[0], minat1, bakat1)
-			rekomendasiKarir(&pekerjaan[1], minat2, bakat2)
-			rekomendasiKarir(&pekerjaan[2], minat1, bakat2)
-			rekomendasiKarir(&pekerjaan[3], minat2, bakat1)
+			rekomendasiKarir(&pekerjaan[0], profile[0].minat, profile[0].bakat)
+			rekomendasiKarir(&pekerjaan[1], profile[1].minat, profile[1].bakat)
+			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
+			rekomendasiKarir(&pekerjaan[3], profile[1].minat, profile[0].bakat)
 
 			for i = 0; i < 4; i++ {
 				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
@@ -116,20 +124,26 @@ func menu() {
 	fmt.Println("7. Exit")
 }
 
-func inputData(nim *int, name *string, a1, a2, b1, b2 *int) {
+func inputData(D *tabProfile) {
+	var i int 
+	
 	fmt.Print("Nama: ")
-	fmt.Scan(name)
+	fmt.Scan(&D[i].nama)
 
 	fmt.Print("Masukkan NIM: ")
-	fmt.Scan(nim)
+	fmt.Scan(&D[i].nim)
 
 	daftarMinat()
 	fmt.Print("Your Answer: ")
-	fmt.Scan(a1, a2)
+	for i = 0; i < 2; i++ {
+		fmt.Scan(&D[i].minat)
+	}
 
 	daftarBakat()
 	fmt.Print("Your Answer: ")
-	fmt.Scan(b1, b2)
+	for i = 0; i < 2; i++ {
+		fmt.Scan(&D[i].bakat)
+	}
 }
 
 func daftarMinat() {
