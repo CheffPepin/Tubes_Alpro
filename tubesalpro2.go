@@ -122,7 +122,8 @@ func main() {
 				}
 			}
 		}
-
+		
+		fmt.Println()
 		menu()
 		fmt.Print("Apa langkah selanjutnya? ")
 		fmt.Scan(&nMenu)
@@ -134,9 +135,9 @@ func main() {
 //untuk menu 1
 
 func menu() {
-	fmt.Println("-----------------------------\n")
-	fmt.Println(" LET'S FIND YOUR DREAM CAREER ")
-	fmt.Println("------------------------------")
+	fmt.Println("------------------------------\n")
+	fmt.Println(" LET'S FIND YOUR SUITABLE CAREER ")
+	fmt.Println("-------------------------------")
 	fmt.Println("Pilih langkah Anda:")
 	fmt.Println("1. Masukkan data Anda")
 	fmt.Println("2. Temukan rekomendasi pekerjaan Anda")
