@@ -6,27 +6,26 @@ const NMAX int = 6
 
 type jobbie struct {
 	title    string
-	id       int
+	total    int
 	kodeUnik int
+	gaji     int
 }
 
 type tabMinat [NMAX]jobbie
 
 //aray untuk pekerjaan berdasarkan minat dan bakat
-var industriN = []int {1,2,3,4,5,6,7,8,9,10,11}
-var industri = []string {"Kuliner", "TI", "Desain", "Kesehatan", "Mekanik", "Pariwisata", "Baca", "Kebun", "Olahraga", "Berkarya", "Jelajah"}
-var kuliner = []string{"Food_Blogger", "kepala_koki", "Quality_Control_Makanan", "Chef", "Manajer_Produksi_Kuliner", "Food_Photographer"}
-var TI = []string{"IT_Support", "IT_Project_Manager", "Programmer", "UI/UX_Designer", "Software_Engineer", "Game_Designer"}
-var desain = []string{"Art_Director", "Creative_Designer", "Desainer_Marketing_Digital", "Animator", "Desainer_UI_bebasis_Data", "Graphic_Designer"}
-var kesehatan = []string{"Perawat", "Supervisor_Medis", "Analis_Kesehatan", "Terapis_Seni", "Statistik_Kesehatan", "Desainer_Edukasi_Kesehatan"}
-var mekanik = []string{"Sales_Engineer_Otomotif", "Manajer_Bengkel", "Analis_Performa_Mesin", "Desainer_Otomotif", "Teknisi_Otomotif", "Modifikator_Kendaraan"}
-var pariwisata = []string{"Customer_Relations_Manager", "Manajer_Hotel", "Analis_Pariwisata", "Event_Organizer", "Analis_Revenue_Hotel", "Desainer_Interior_Hotel"}
-var baca = []string{"Jurnalis", "Kepala_Redaksi", "Peneliti_Sastra", "Penulis", "Penulis_Edukasi_STEM", "Penyair_Ilustratif"}
-var kebun = []string{"Penyuluh_Pertanian", "Manajer_Kebun", "Agronomis", "Desainer_Lanskap", "Perencana_Irigasi", "Fotografer_Alam"}
-var olahraga = []string{"Instruktur_Komunitas", "Pelatih_Komunitas", "Analis_Kinerja_Atlet", "Pembuat_Konten_Olahraga", "Analis_Statistik_Olahraga", "Desainer_Merchandise_Olahraga"}
-var berkarya = []string{"Kurator_Galeri", "Manajer_Studio_Seni", "Sejarawan_Seni", "Seniman_Kontemporer", "Visualis_Data_Artistik", "Pelukis"}
-var jelajah = []string{"Pemandu_Wisata", "Manajer_Tur", "Peneliti_Budaya", "Travel_Photographer", "Analis_Data_Wisata", "Travel_Illustrator"}
-
+var industri = []string{"Kuliner", "TI", "Desain", "Kesehatan", "Mekanik", "Pariwisata", "Baca", "Kebun", "Olahraga", "Berkarya", "Jelajah"}
+var kuliner = []jobbie{{"Food_Blogger",0,11, } "kepala_koki", "Quality_Control_Makanan", "Chef", "Manajer_Produksi_Kuliner", "Food_Photographer"}
+var TI = []jobbie{"IT_Support", "IT_Project_Manager", "Programmer", "UI/UX_Designer", "Software_Engineer", "Game_Designer"}
+var desain = []jobbie{"Art_Director", "Creative_Designer", "Desainer_Marketing_Digital", "Animator", "Desainer_UI_bebasis_Data", "Graphic_Designer"}
+var kesehatan = []jobbie{"Perawat", "Supervisor_Medis", "Analis_Kesehatan", "Terapis_Seni", "Statistik_Kesehatan", "Desainer_Edukasi_Kesehatan"}
+var mekanik = []jobbie{"Sales_Engineer_Otomotif", "Manajer_Bengkel", "Analis_Performa_Mesin", "Desainer_Otomotif", "Teknisi_Otomotif", "Modifikator_Kendaraan"}
+var pariwisata = []jobbie{"Customer_Relations_Manager", "Manajer_Hotel", "Analis_Pariwisata", "Event_Organizer", "Analis_Revenue_Hotel", "Desainer_Interior_Hotel"}
+var baca = []jobbie{"Jurnalis", "Kepala_Redaksi", "Peneliti_Sastra", "Penulis", "Penulis_Edukasi_STEM", "Penyair_Ilustratif"}
+var kebun = []jobbie{"Penyuluh_Pertanian", "Manajer_Kebun", "Agronomis", "Desainer_Lanskap", "Perencana_Irigasi", "Fotografer_Alam"}
+var olahraga = []jobbie{"Instruktur_Komunitas", "Pelatih_Komunitas", "Analis_Kinerja_Atlet", "Pembuat_Konten_Olahraga", "Analis_Statistik_Olahraga", "Desainer_Merchandise_Olahraga"}
+var berkarya = []jobbie{"Kurator_Galeri", "Manajer_Studio_Seni", "Sejarawan_Seni", "Seniman_Kontemporer", "Visualis_Data_Artistik", "Pelukis"}
+var jelajah = []jobbie{"Pemandu_Wisata", "Manajer_Tur", "Peneliti_Budaya", "Travel_Photographer", "Analis_Data_Wisata", "Travel_Illustrator"}
 //array
 
 func main() {
