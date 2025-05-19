@@ -42,7 +42,7 @@ func main() {
 	var nMenu, i, ans3, min, max, N, ans5 int
 
 	menu()
-	fmt.Print("what step would you like to do first? ")
+	fmt.Print("Langkah apa yang ingin Anda lakukan terlebih dahulu?")
 	fmt.Scan(&nMenu)
 
 	for nMenu != 6 {
@@ -53,7 +53,7 @@ func main() {
 
 		case 2:
 			fmt.Println()
-			fmt.Println("berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
+			fmt.Println("Berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
 			rekomendasiKarir(&pekerjaan[0], profile[0].minat, profile[0].bakat)
 			rekomendasiKarir(&pekerjaan[1], profile[1].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
@@ -71,6 +71,7 @@ func main() {
 			fmt.Println("Berdasarkan apa Anda ingin mengkategorikan pekerjaan yang dicari?")
 			fmt.Println("1. Nama")
 			fmt.Println("2. Industri")
+			fmt.Println("Jawaban: ")
 			fmt.Scan(&ans3)
 			if ans3 == 1 {
 				var result jobbie
@@ -80,7 +81,7 @@ func main() {
 				sequentialSearch(ans4, &result)
 
 				if result.title == "error" {
-					fmt.Println("maaf pekerjaan yang anda cari tidak ada dalam database kami")
+					fmt.Println("Maaf pekerjaan yang anda cari tidak ada dalam database kami")
 				} else {
 					fmt.Println("Berikut adalah data dari pekerjaan yang anda cari!")
 					fmt.Printf("Nama pekerjaan: %s\n", result.title)
@@ -94,12 +95,13 @@ func main() {
 			fmt.Println("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda?")
 			fmt.Println("1. Kecocokan minat dan bakat")
 			fmt.Println("2. Gaji")
+			fmt.Println("Jawaban: ")
 			fmt.Scan(&ans5)
 
 			if ans5 == 1 {
 				kecocokanUser(&pekerjaan)
 				selectionSort(&pekerjaan)
-				fmt.Println("berikut daftar pekerjaan yang apling cocok denganmu! ")
+				fmt.Println("Berikut daftar pekerjaan yang apling cocok denganmu! ")
 				for i = 0; i < 4; i++ {
 					fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
 				}
@@ -122,7 +124,7 @@ func main() {
 		}
 
 		menu()
-		fmt.Print("whats your next step? ")
+		fmt.Print("Apa langkah selanjutnya? ")
 		fmt.Scan(&nMenu)
 
 	}
@@ -152,13 +154,13 @@ func inputData(D *tabProfile) {
 	fmt.Scan(&D[i].nim)
 
 	daftarMinat()
-	fmt.Print("Your Answer: ")
+	fmt.Print("Jawaban: ")
 	for i = 0; i < 2; i++ {
 		fmt.Scan(&D[i].minat)
 	}
 
 	daftarBakat()
-	fmt.Print("Your Answer: ")
+	fmt.Print("Jawaban: ")
 	for i = 0; i < 2; i++ {
 		fmt.Scan(&D[i].bakat)
 	}
