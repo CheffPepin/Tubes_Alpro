@@ -344,78 +344,76 @@ func binSearch(){
 		i = 0
 		if d == "Kuliner" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, kuliner[i])
+				fmt.Printf("%d. %s\n", i+1, kuliner[i].title)
 				i++
 			}
 		} else if d == "TI" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, TI[i])
+				fmt.Printf("%d. %s\n", i+1, TI[i].title)
 				i++
 			}
-			fmt.Printf("%d. %s\n", i+1, jelajah[4])
+			fmt.Printf("%d. %s\n", i+1, jelajah[4].title)
 		} else if d == "Desain" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, desain[i])
+				fmt.Printf("%d. %s\n", i+1, desain[i].title)
 				i++
 			}
 			for j = 3; j <= 5;j++ {
-				fmt.Printf("%d. %s\n", i+1, berkarya[j])
+				fmt.Printf("%d. %s\n", i+1, berkarya[j].title)
 				i++
 			}
-			fmt.Printf("%d. %s\n", i+1, jelajah[5])
+			fmt.Printf("%d. %s\n", i+1, jelajah[5].title)
 		} else if d == "Kesehatan" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, kesehatan[i])
+				fmt.Printf("%d. %s\n", i+1, kesehatan[i].title)
 				i++
 			}
 		} else if d == "Mekanik" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, mekanik[i])
+				fmt.Printf("%d. %s\n", i+1, mekanik[i].title)
 				i++
 			}
 		} else if d == "Pariwisata" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, pariwisata[i])
+				fmt.Printf("%d. %s\n", i+1, pariwisata[i].title)
 				i++
 			}
 			for j = 1; j < 4;j++ {
-				fmt.Printf("%d. %s\n", i+1, berkarya[j])
+				fmt.Printf("%d. %s\n", i+1, berkarya[j].title)
 				i++
 			}
 		} else if d == "Baca" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, baca[i])
+				fmt.Printf("%d. %s\n", i+1, baca[i].title)
 				i++
 			}
 		} else if d == "Kebun" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, kebun[i])
+				fmt.Printf("%d. %s\n", i+1, kebun[i].title)
 				i++
 			}
 		} else if d == "Olahraga" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, olahraga[i])
+				fmt.Printf("%d. %s\n", i+1, olahraga[i].title)
 				i++
 			}
 		} else if d == "Berkarya" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, berkarya[i])
+				fmt.Printf("%d. %s\n", i+1, berkarya[i].title)
 				i++
 			}
-			fmt.Printf("%d. %s\n", i+1, jelajah[3])
+			fmt.Printf("%d. %s\n", i+1, jelajah[3].title)
 			
 		} else if d == "Jelajah" {
 			for i <= 5 {
-				fmt.Printf("%d. %s\n", i+1, jelajah[i])
+				fmt.Printf("%d. %s\n", i+1, jelajah[i].title)
 				i++
 			}
 		}
 	} else {
 		fmt.Println("Industri tidak ditemukan.")
 	}
-	
 }
-
 
 //untuk menu 4
 //selection sort untuk berdasarkan kecocokan, binary untuk gaji
