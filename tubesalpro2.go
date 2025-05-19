@@ -45,7 +45,7 @@ func main() {
 	fmt.Print("Langkah apa yang ingin Anda lakukan terlebih dahulu?")
 	fmt.Scan(&nMenu)
 
-	for nMenu != 6 {
+	for nMenu != 7 {
 		switch nMenu {
 		case 1:
 			fmt.Println()
