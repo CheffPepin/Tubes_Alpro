@@ -6,7 +6,7 @@ const NMAX int = 6
 
 type jobbie struct {
 	title    string
-	total    int
+	id       int
 	kodeUnik int
 	gaji     int
 }
@@ -15,17 +15,18 @@ type tabMinat [NMAX]jobbie
 
 //aray untuk pekerjaan berdasarkan minat dan bakat
 var industri = []string{"Kuliner", "TI", "Desain", "Kesehatan", "Mekanik", "Pariwisata", "Baca", "Kebun", "Olahraga", "Berkarya", "Jelajah"}
-var kuliner = []jobbie{{"Food_Blogger",0,11, } "kepala_koki", "Quality_Control_Makanan", "Chef", "Manajer_Produksi_Kuliner", "Food_Photographer"}
-var TI = []jobbie{"IT_Support", "IT_Project_Manager", "Programmer", "UI/UX_Designer", "Software_Engineer", "Game_Designer"}
-var desain = []jobbie{"Art_Director", "Creative_Designer", "Desainer_Marketing_Digital", "Animator", "Desainer_UI_bebasis_Data", "Graphic_Designer"}
-var kesehatan = []jobbie{"Perawat", "Supervisor_Medis", "Analis_Kesehatan", "Terapis_Seni", "Statistik_Kesehatan", "Desainer_Edukasi_Kesehatan"}
-var mekanik = []jobbie{"Sales_Engineer_Otomotif", "Manajer_Bengkel", "Analis_Performa_Mesin", "Desainer_Otomotif", "Teknisi_Otomotif", "Modifikator_Kendaraan"}
-var pariwisata = []jobbie{"Customer_Relations_Manager", "Manajer_Hotel", "Analis_Pariwisata", "Event_Organizer", "Analis_Revenue_Hotel", "Desainer_Interior_Hotel"}
-var baca = []jobbie{{"Jurnalis", 0, 77, 6000000}, {"Kepala_Redaksi",0,77,9500000},{"Peneliti_Sastra", 0, 77, 7000000}, {"Penulis", 0, 77, 4500000},{ "Penulis_Edukasi_STEM", 0, 77, 5500000}, {"Penyair_Ilustratif",0,77,4725000}
-var kebun = []jobbie{{"Penyuluh_Pertanian", 0, 88, 4000000}, {"Manajer_Kebun",0,88,16000000},{"Agronomis",0,88,5280000},{"Desainer_Lanskap", 0, 88, 9019437}, {"Perencana_Irigasi",0,88, 6095000}, {"Fotografer_Alam",0,88,5125000}}
-var olahraga = []jobbie{{"Instruktur_Komunitas",0,99,4720820},{"Pelatih_Komunitas",0,99,5375000},{"Analis_Kinerja_Atlet",0,99, 10145563},{"Pembuat_Konten_Olahraga",0,99,4700000},{"Analis_Statistik_Olahraga",0,99, 10145563}, {"Desainer_Merchandise_Olahraga",0,99,6190000}}
-var berkarya = []jobbie{{"Kurator_Galeri",0,110,12500000},{"Manajer_Studio_Seni",0,110, 21000000},{"Sejarawan_Seni",0,110, 7500000},{"Seniman_Kontemporer",0,110,7500000},{"Visualis_Data_Artistik",0,110, 6190000},{"Pelukis", 0, 110, 7500000}}
-var jelajah = []jobbie{{"Pemandu_Wisata",0,120, 4000000},{"Manajer_Tur",0,120, 21000000},{"Peneliti_Budaya",0,120, 7500000},{"Travel_Photographer",0,120, 5125000},{"Analis_Data_Wisata",0,120, 6190000},{"Travel_Illustrator",0,120, 4725000}}
+var kuliner = []jobbie{{"Food_Blogger", 0, 11, 4500000}, {"kepala_koki", 0, 11, 9250000}, {"Quality_Control_Makanan", 0, 11, 10000000}, {"Chef", 0, 11, 11500000}, {"Manajer_Produksi_Kuliner", 0, 11, 12500000}, {"Food_Photographer", 0, 11, 13500000}}
+var TI = []jobbie{{"IT_Support", 0, 22, 5804075}, {"IT_Project_Manager", 0, 22, 10710269}, {"Programmer", 0, 22, 10000000}, {"UI/UX_Designer", 0, 22, 5000000}, {"Software_Engineer", 0, 22, 14750000}, {"Game_Designer", 0, 22, 7950000}}
+var desain = []jobbie{{"Art_Director", 0, 33, 20025000}, {"Creative_Designer", 0, 33, 4588523}, {"Desainer_Marketing_Digital", 0, 33, 4500000}, {"Animator", 0, 33, 6190000}, {"Desainer_UI_bebasis_Data", 0, 33, 5000000}, {"Graphic_Designer", 0, 33, 6190000}}
+var kesehatan = []jobbie{{"Perawat", 0, 44, 5500000}, {"Supervisor_Medis", 0, 44, 9000000}, {"Analis_Kesehatan", 0, 44, 7000000}, {"Terapis_Seni", 0, 44, 6000000}, {"Statistik_Kesehatan", 0, 44, 7500000}, {"Desainer_Edukasi_Kesehatan", 0, 44, 5500000}}
+var mekanik = []jobbie{{"Sales_Engineer_Otomotif", 0, 55, 7500000}, {"Manajer_Bengkel", 0, 55, 11000000}, {"Analis_Performa_Mesin", 0, 55, 9000000}, {"Desainer_Otomotif", 0, 55, 7000000}, {"Teknisi_Otomotif", 0, 55, 6000000}, {"Modifikator_Kendaraan", 0, 55, 7500000}}
+var pariwisata = []jobbie{{"Customer_Relations_Manager", 0, 66, 9000000}, {"Manajer_Hotel", 0, 66, 15000000}, {"Analis_Pariwisata", 0, 66, 7000000}, {"Event_Organizer", 0, 66, 6000000}, {"Analis_Revenue_Hotel", 0, 66, 9000000}, {"Desainer_Interior_Hotel", 0, 66, 7000000}}
+var baca = []jobbie{{"Jurnalis", 0, 77, 6000000}, {"Kepala_Redaksi", 0, 77, 9500000}, {"Peneliti_Sastra", 0, 77, 7000000}, {"Penulis", 0, 77, 4500000}, {"Penulis_Edukasi_STEM", 0, 77, 5500000}, {"Penyair_Ilustratif", 0, 77, 4725000}}
+var kebun = []jobbie{{"Penyuluh_Pertanian", 0, 88, 4000000}, {"Manajer_Kebun", 0, 88, 16000000}, {"Agronomis", 0, 88, 5280000}, {"Desainer_Lanskap", 0, 88, 9019437}, {"Perencana_Irigasi", 0, 88, 6095000}, {"Fotografer_Alam", 0, 88, 5125000}}
+var olahraga = []jobbie{{"Instruktur_Komunitas", 0, 99, 4720820}, {"Pelatih_Komunitas", 0, 99, 5375000}, {"Analis_Kinerja_Atlet", 0, 99, 10145563}, {"Pembuat_Konten_Olahraga", 0, 99, 4700000}, {"Analis_Statistik_Olahraga", 0, 99, 10145563}, {"Desainer_Merchandise_Olahraga", 0, 99, 6190000}}
+var berkarya = []jobbie{{"Kurator_Galeri", 0, 110, 12500000}, {"Manajer_Studio_Seni", 0, 110, 21000000}, {"Sejarawan_Seni", 0, 110, 7500000}, {"Seniman_Kontemporer", 0, 110, 7500000}, {"Visualis_Data_Artistik", 0, 110, 6190000}, {"Pelukis", 0, 110, 7500000}}
+var jelajah = []jobbie{{"Pemandu_Wisata", 0, 120, 4000000}, {"Manajer_Tur", 0, 120, 21000000}, {"Peneliti_Budaya", 0, 120, 7500000}, {"Travel_Photographer", 0, 120, 5125000}, {"Analis_Data_Wisata", 0, 120, 6190000}, {"Travel_Illustrator", 0, 120, 4725000}}
+
 //array
 
 func main() {
