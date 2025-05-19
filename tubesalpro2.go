@@ -111,16 +111,13 @@ func main() {
 //untuk menu 1
 
 func menu() {
-	fmt.Println("_______________________________\n")
-	fmt.Println(" LETS FIND YOUR SUITABLE CAREER")
-	fmt.Println("_______________________________")
-	fmt.Println("Pick your step")
-	fmt.Println("1. Input  your data")
-	fmt.Println("2. Find your recomended job")
-	fmt.Println("3. Search for your dream job")
-	fmt.Println("4. List your recommended carrer")
-	fmt.Println("5. Your Statistic")
-	fmt.Println("6. Edit Your Data")
+	fmt.Println("Pilih langkah Anda:")
+	fmt.Println("1. Masukkan data Anda")
+	fmt.Println("2. Temukan rekomendasi pekerjaan Anda")
+	fmt.Println("3. Cari pekerjaan impian Anda")
+	fmt.Println("4. Daftar rekomendasi karier Anda")
+	fmt.Println("5. Statistik Anda")
+	fmt.Println("6. Ubah data Anda")
 	fmt.Println("7. Exit")
 }
 
