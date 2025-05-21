@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const NMAX int = 66
+const NMAX int = 100
 
 type jobbie struct {
 	title    string
@@ -16,6 +16,7 @@ type dataD struct {
 	nim          int
 	minat, bakat int
 	karir        string
+	cucok        float64
 }
 
 type tabProfile [NMAX]dataD
@@ -100,8 +101,8 @@ func main() {
 			fmt.Scan(&ans5)
 
 			if ans5 == 1 {
-				kecocokanUser(&pekerjaan)
-				selectionSort(&pekerjaan)
+				kecocokanUser(&pekerjaan, nPekerjaan)
+				selectionSort(&pekerjaan, nPekerjaan)
 				fmt.Println("berikut daftar pekerjaan yang apling cocok denganmu! ")
 				for i = 0; i < 4; i++ {
 					fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
@@ -124,7 +125,7 @@ func main() {
 			}
 
 		case 5:
-			statistik()
+			statistik(profile, nPekerjaan, pekerjaan)
 
 		case 6:
 			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda?")
@@ -469,7 +470,7 @@ func binSearch() {
 //untuk menu 4
 //selection sort untuk berdasarkan kecocokan, binary untuk gaji
 
-func kecocokanUser(job *tabMinat) {
+func kecocokanUser(job *tabMinat, y int) {
 	var i, n, x int
 
 	n = 4
@@ -477,11 +478,11 @@ func kecocokanUser(job *tabMinat) {
 	fmt.Println()
 	fmt.Println("dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
 
-	for i = 0; i < 4; i++ {
+	for i = 0; i < y; i++ {
 		fmt.Printf("%d. %s\n", i+1, job[i].title)
 	}
 
-	for i = 0; i < 4; i++ {
+	for i = 0; i < y; i++ {
 		fmt.Printf("urut no %d?", i+1)
 		fmt.Scan(&x)
 		job[x-1].id = job[x-1].id + n
@@ -490,13 +491,13 @@ func kecocokanUser(job *tabMinat) {
 
 }
 
-func selectionSort(job *tabMinat) {
+func selectionSort(job *tabMinat, n int) {
 	var idxMax, i, pass int
 	var temp jobbie
 
 	pass = 1
 
-	for pass < 4 {
+	for pass < n {
 		idxMax = pass - 1
 		i = pass
 
@@ -643,6 +644,7 @@ func hapusP(p *tabProfile, n *int) {
 	for i = 0; i < *n; i++ {
 		fmt.Printf("%d. %s\n", i+1, p[i].karir)
 	}
+
 	fmt.Scan(&hapus)
 
 	if hapus < *n {
@@ -792,6 +794,31 @@ func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
 
 //menu 5
 
-func statistik() {
+func statistik(p tabProfile, n int, job tabMinat) {
+	var i, pass int
+	var temp jobbie
+	var arrUrut tabMinat
+
+	for i = 0; i < n; i++ {
+		arrUrut[i] = job[i]
+	}
+
+	//sorting
+	pass = 1
+
+	for pass < n {
+		i = pass
+		temp = arrUrut[pass]
+
+		for i > 0 && arrUrut[i-1].gaji > temp.gaji {
+			arrUrut[i] = arrUrut[i-1]
+			i--
+		}
+
+		arrUrut[i] = temp
+		pass++
+	}
+
+	// ngitung
 
 }
