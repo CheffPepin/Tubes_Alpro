@@ -39,7 +39,8 @@ func main() {
 	var ans4 string
 	var pekerjaan, dataPekerjaan tabMinat
 	var profile tabProfile
-	var nMenu, i, ans3, min, max, N, ans5 int
+	var nMenu, i, ans3, min, max, N, ans5, ans6 int
+	var nPekerjaan int
 
 	menu()
 	fmt.Print("what step would you like to do first? ")
@@ -121,27 +122,32 @@ func main() {
 			}
 
 		case 5:
-			
-		}
+			statistik()
 
-		case 6 :
+		case 6:
+			//var nMenambah, nBerkurang int
+
 			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda?")
 			fmt.Println("1. Ya")
 			fmt.Println("2. Tidak")
 			fmt.Scan(&ans6)
 			if ans6 == 1 {
-				editPekerjaan(profile)
-			} 
-			for i = 0; i < 4; i++ {
-				fmt.Printf("%d. %s\n", i+1, p[i].karir)
+				editPekerjaan(&profile, &nPekerjaan)
+				//updatePekerjaan(profile, nPekerjaan, &pekerjaan)
+				//fmt.Print(nMenambah, nBerkurang)
+			}
+
+			for i = 0; i < nPekerjaan; i++ {
+				fmt.Printf("%d. %s\n", i+1, profile[i].karir)
+				//fmt.Println(pekerjaan)
+			}
+		}
 
 		fmt.Println()
 		menu()
 		fmt.Print("Apa langkah selanjutnya? ")
 		fmt.Scan(&nMenu)
 		fmt.Println()
-		
-
 	}
 
 }
@@ -178,7 +184,7 @@ func inputData(D *tabProfile) {
 	}
 
 	daftarBakat()
-	fmt.Print(": ")Jawabanmu
+	fmt.Print("Jawabanmu: ")
 	for i = 0; i < 2; i++ {
 		fmt.Scan(&D[i].bakat)
 	}
@@ -616,41 +622,70 @@ func InsertionSort(masukRange *tabMinat, n int) {
 
 }
 
-func editPekerjaan(p tabProfile) {
+func editPekerjaan(p *tabProfile, n *int) {
 	var ansD int
 	fmt.Println("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
 	fmt.Println("1. Menghapus")
 	fmt.Println("2. Menambahkan")
 	fmt.Scan(&ansD)
 	if ansD == 1 {
-		hapusP(p)
+		hapusP(p, n)
 	} else if ansD == 2 {
-		tambahP(p)
+		tambahP(p, n)
 	}
 }
 
-func hapusP(p *tabProfile){
-	var i, n int 
+func hapusP(p *tabProfile, n *int) {
+	var i, hapus int
+
 	fmt.Println("Pekerjaan berapa yang Anda ingin hapus?")
-	n = 4 
-	for i = 0; i < 4; i++ {
+
+	for i = 0; i < *n; i++ {
 		fmt.Printf("%d. %s\n", i+1, p[i].karir)
 	}
 	fmt.Scan(&hapus)
-	
-	if hapus < n {
+
+	if hapus < *n {
 		i = hapus - 1
-		for i < n {
+		for i < *n {
 			p[i] = p[i+1]
-			i--
+			i++
 		}
-		n--
+		*n = *n - 1
 	} else {
-		n--
+		*n = *n - 1
 	}
 }
+
+func tambahP(p *tabProfile, n *int) {
+	var i, j int
+	var apyh bool
+	var newJob string
+	fmt.Println("Masukkan maximal 3 pekerjaan baru, jika sudah cukup masukkan #")
+
+	i = 0
+
+	fmt.Scan(&newJob)
+	for newJob != "#" && i < 4 {
+		j = 0
+		apyh = false
+		for j < *n && apyh == false {
+			apyh = newJob != p[j].karir
+			j++
+		}
+
+		if apyh == true {
+			p[*n].karir = newJob
+			*n = *n + 1
+		}
+		i++
+		fmt.Scan(&newJob)
+	}
+
+}
+
 //menu 5
 
 func statistik() {
-	
+
 }
