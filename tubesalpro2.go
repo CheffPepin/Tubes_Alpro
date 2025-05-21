@@ -30,10 +30,10 @@ var kesehatan = []jobbie{{"Perawat", 49, 44, 5500000}, {"Supervisor_Medis", 50, 
 var mekanik = []jobbie{{"Sales_Engineer_Otomotif", 61, 55, 7500000}, {"Manajer_Bengkel", 62, 55, 11000000}, {"Analis_Performa_Mesin", 63, 55, 9000000}, {"Desainer_Otomotif", 64, 55, 7000000}, {"Teknisi_Otomotif", 65, 55, 6000000}, {"Modifikator_Kendaraan", 66, 55, 7500000}}
 var pariwisata = []jobbie{{"Customer_Relations_Manager", 73, 66, 9000000}, {"Manajer_Hotel", 74, 66, 15000000}, {"Analis_Pariwisata", 75, 66, 7000000}, {"Event_Organizer", 76, 66, 6000000}, {"Analis_Revenue_Hotel", 77, 66, 9000000}, {"Desainer_Interior_Hotel", 78, 66, 7000000}}
 var baca = []jobbie{{"Jurnalis", 85, 77, 6000000}, {"Kepala_Redaksi", 86, 77, 9500000}, {"Peneliti_Sastra", 87, 77, 7000000}, {"Penulis", 88, 77, 4500000}, {"Penulis_Edukasi_STEM", 89, 77, 5500000}, {"Penyair_Ilustratif", 90, 77, 4725000}}
-var kebun = []jobbie{{"Penyuluh_Pertanian", 0, 88, 4000000}, {"Manajer_Kebun", 0, 88, 16000000}, {"Agronomis", 0, 88, 5280000}, {"Desainer_Lanskap", 0, 88, 9019437}, {"Perencana_Irigasi", 0, 88, 6095000}, {"Fotografer_Alam", 0, 88, 5125000}}
-var olahraga = []jobbie{{"Instruktur_Komunitas", 0, 99, 4720820}, {"Pelatih_Komunitas", 0, 99, 5375000}, {"Analis_Kinerja_Atlet", 0, 99, 10145563}, {"Pembuat_Konten_Olahraga", 0, 99, 4700000}, {"Analis_Statistik_Olahraga", 0, 99, 10145563}, {"Desainer_Merchandise_Olahraga", 0, 99, 6190000}}
-var berkarya = []jobbie{{"Kurator_Galeri", 0, 110, 12500000}, {"Manajer_Studio_Seni", 0, 110, 21000000}, {"Sejarawan_Seni", 0, 110, 7500000}, {"Seniman_Kontemporer", 0, 110, 7500000}, {"Visualis_Data_Artistik", 0, 110, 6190000}, {"Pelukis", 0, 110, 7500000}}
-var jelajah = []jobbie{{"Pemandu_Wisata", 0, 120, 4000000}, {"Manajer_Tur", 0, 120, 21000000}, {"Peneliti_Budaya", 0, 120, 7500000}, {"Travel_Photographer", 0, 120, 5125000}, {"Analis_Data_Wisata", 0, 120, 6190000}, {"Travel_Illustrator", 0, 120, 4725000}}
+var kebun = []jobbie{{"Penyuluh_Pertanian", 97, 88, 4000000}, {"Manajer_Kebun", 98, 88, 16000000}, {"Agronomis", 99, 88, 5280000}, {"Desainer_Lanskap", 100, 88, 9019437}, {"Perencana_Irigasi", 101, 88, 6095000}, {"Fotografer_Alam", 102, 88, 5125000}}
+var olahraga = []jobbie{{"Instruktur_Komunitas", 109, 99, 4720820}, {"Pelatih_Komunitas", 110, 99, 5375000}, {"Analis_Kinerja_Atlet", 111, 99, 10145563}, {"Pembuat_Konten_Olahraga", 112, 99, 4700000}, {"Analis_Statistik_Olahraga", 123, 99, 10145563}, {"Desainer_Merchandise_Olahraga", 124, 99, 6190000}}
+var berkarya = []jobbie{{"Kurator_Galeri", 122, 110, 12500000}, {"Manajer_Studio_Seni", 123, 110, 21000000}, {"Sejarawan_Seni", 124, 110, 7500000}, {"Seniman_Kontemporer", 125, 110, 7500000}, {"Visualis_Data_Artistik", 126, 110, 6190000}, {"Pelukis", 127, 110, 7500000}}
+var jelajah = []jobbie{{"Pemandu_Wisata", 132, 120, 4000000}, {"Manajer_Tur", 133, 120, 21000000}, {"Peneliti_Budaya", 134, 120, 7500000}, {"Travel_Photographer", 135, 120, 5125000}, {"Analis_Data_Wisata", 136, 120, 6190000}, {"Travel_Illustrator", 137, 120, 4725000}}
 
 func main() {
 	var ans4 string
@@ -60,11 +60,13 @@ func main() {
 			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[3], profile[1].minat, profile[0].bakat)
 
-			for i = 0; i < 4; i++ {
+			nPekerjaan = 4
+
+			for i = 0; i < nPekerjaan; i++ {
 				profile[i].karir = pekerjaan[i].title
 			}
 
-			for i = 0; i < 4; i++ {
+			for i = 0; i < nPekerjaan; i++ {
 				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
 			}
 
@@ -125,21 +127,19 @@ func main() {
 			statistik()
 
 		case 6:
-			//var nMenambah, nBerkurang int
-
 			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda?")
 			fmt.Println("1. Ya")
 			fmt.Println("2. Tidak")
 			fmt.Scan(&ans6)
 			if ans6 == 1 {
 				editPekerjaan(&profile, &nPekerjaan)
-				//updatePekerjaan(profile, nPekerjaan, &pekerjaan)
-				//fmt.Print(nMenambah, nBerkurang)
+				updatePekerjaan(profile, nPekerjaan, &pekerjaan)
+
 			}
 
 			for i = 0; i < nPekerjaan; i++ {
 				fmt.Printf("%d. %s\n", i+1, profile[i].karir)
-				//fmt.Println(pekerjaan)
+				fmt.Println(pekerjaan[i])
 			}
 		}
 
@@ -677,11 +677,117 @@ func tambahP(p *tabProfile, n *int) {
 		if apyh == true {
 			p[*n].karir = newJob
 			*n = *n + 1
-		}
-		i++
-		fmt.Scan(&newJob)
-	}
 
+			i++
+
+			fmt.Scan(&newJob)
+		}
+
+	}
+}
+
+func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
+	var i, j int
+	var temp jobbie
+
+	temp.title = "not found"
+	i = 0
+
+	for i < n {
+		for j = 0; j < 6; j++ {
+			if p[i].karir == kuliner[j].title {
+				temp = kuliner[j]
+			}
+		}
+
+		if temp.title == "not found" {
+			for j = 0; j < 6; j++ {
+				if p[i].karir == TI[j].title {
+					temp = TI[j]
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == desain[j].title {
+						temp = desain[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == kesehatan[j].title {
+						temp = kesehatan[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == mekanik[j].title {
+						temp = mekanik[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == pariwisata[j].title {
+						temp = pariwisata[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == baca[j].title {
+						temp = baca[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == kebun[j].title {
+						temp = kebun[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == olahraga[j].title {
+						temp = olahraga[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == berkarya[j].title {
+						temp = berkarya[j]
+					}
+				}
+			}
+
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == jelajah[j].title {
+						temp = jelajah[j]
+					}
+				}
+			}
+
+			if temp.title != "not found" {
+				job[i] = temp
+			}
+
+			temp.title = "not found"
+			i++
+
+		}
+	}
 }
 
 //menu 5
