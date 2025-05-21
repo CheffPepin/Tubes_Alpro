@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const NMAX int = 100
+const NMAX int = 66
 
 type jobbie struct {
 	title    string
@@ -67,6 +67,8 @@ func main() {
 				profile[i].karir = pekerjaan[i].title
 			}
 
+			updatePekerjaan(profile, nPekerjaan, &pekerjaan)
+
 			for i = 0; i < nPekerjaan; i++ {
 				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
 			}
@@ -104,8 +106,8 @@ func main() {
 				kecocokanUser(&pekerjaan, nPekerjaan)
 				selectionSort(&pekerjaan, nPekerjaan)
 				fmt.Println("berikut daftar pekerjaan yang apling cocok denganmu! ")
-				for i = 0; i < 4; i++ {
-					fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
+				for i = 0; i < nPekerjaan; i++ {
+					fmt.Printf("%d. %s \n", i+1, pekerjaan[i].title)
 				}
 			} else if ans5 == 2 {
 				fmt.Println("Masukkan range gaji yang ingin anda cari")
@@ -473,7 +475,7 @@ func binSearch() {
 func kecocokanUser(job *tabMinat, y int) {
 	var i, n, x int
 
-	n = 4
+	n = y
 
 	fmt.Println()
 	fmt.Println("dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
@@ -795,7 +797,7 @@ func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
 //menu 5
 
 func statistik(p tabProfile, n int, job tabMinat) {
-	var i, pass int
+	var i, pass, ans, j, total int
 	var temp jobbie
 	var arrUrut tabMinat
 
@@ -820,5 +822,66 @@ func statistik(p tabProfile, n int, job tabMinat) {
 	}
 
 	// ngitung
+	for i = 0; i < n; i++ {
+		j = 0
+		for j < n {
+			if arrUrut[i].title == p[j].karir {
+				p[j].cucok = (float64(job[j].id) - float64(job[j].kodeUnik)) + float64(i+1)
+			}
+			j++
+		}
+
+	}
+
+	for i = 0; i < n; i++ {
+		fmt.Println(p[i].cucok)
+	}
+
+	fmt.Println("Apakah anda sudah membuat daftar rekomendasi pekerjaan berdasarkan minat dan bakat?")
+	fmt.Println("1. Ya")
+	fmt.Println("2. tidak")
+	fmt.Scan(&ans)
+
+	if ans == 1 {
+		if p[0].minat > p[1].minat {
+			if p[0].bakat > p[1].bakat {
+				total = p[0].minat + p[0].bakat + (n * 2)
+			} else {
+				total = p[0].minat + p[1].bakat + (n * 2)
+			}
+		} else {
+			if p[1].bakat > p[0].bakat {
+				total = p[1].minat + p[0].bakat + (n * 2)
+			} else {
+				total = p[1].minat + p[1].bakat + (n * 2)
+			}
+		}
+
+	} else {
+		if p[0].minat > p[1].minat {
+			if p[0].bakat > p[1].bakat {
+				total = p[0].minat + p[0].bakat + n
+			} else {
+				total = p[0].minat + p[1].bakat + n
+			}
+		} else {
+			if p[1].bakat > p[0].bakat {
+				total = p[1].minat + p[0].bakat + n
+			} else {
+				total = p[1].minat + p[1].bakat + n
+			}
+		}
+
+	}
+
+	for i = 0; i < n; i++ {
+		p[i].cucok = (p[i].cucok / float64(total)) * 100
+	}
+
+	fmt.Printf("nilai total = %d\n", total)
+
+	for i = 0; i < n; i++ {
+		fmt.Printf("| %-3d | %-24s | %-9.2f%% |\n", i+1, arrUrut[i].title, p[i].cucok)
+	}
 
 }
