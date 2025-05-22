@@ -121,11 +121,11 @@ func main() {
 
 				fmt.Println("Berikut seluruh data pekerjaan yang sesuai dengan range gaji yang anda inginkan!")
 				fmt.Printf("| %-2s | %-30s | %-12s |\n", "No", "Pekerjaan", "Gaji")
-				fmt.Println("______________________________________________________")
+				fmt.Println("------------------------------------------------------")
 				for i = 0; i < N; i++ {
 					fmt.Printf("| %-2d | %-30s | %-12d |\n", i+1, dataPekerjaan[i].title, dataPekerjaan[i].gaji)
 				}
-				fmt.Println("______________________________________________________")
+				fmt.Println("------------------------------------------------------")
 			}
 
 		case 5:
