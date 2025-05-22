@@ -44,7 +44,7 @@ func main() {
 	var nPekerjaan int
 
 	menu()
-	fmt.Print("what step would you like to do first? ")
+	fmt.Print("What step would you like to do first? ")
 	fmt.Scan(&nMenu)
 
 	for nMenu != 7 {
@@ -55,7 +55,7 @@ func main() {
 
 		case 2:
 			fmt.Println()
-			fmt.Println("berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
+			fmt.Println("Berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
 			rekomendasiKarir(&pekerjaan[0], profile[0].minat, profile[0].bakat)
 			rekomendasiKarir(&pekerjaan[1], profile[1].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
@@ -86,7 +86,7 @@ func main() {
 				sequentialSearch(ans4, &result)
 
 				if result.title == "error" {
-					fmt.Println("maaf pekerjaan yang anda cari tidak ada dalam database kami")
+					fmt.Println("Maaf pekerjaan yang anda cari tidak ada dalam database kami")
 				} else {
 					fmt.Println("Berikut adalah data dari pekerjaan yang anda cari!")
 					fmt.Printf("Nama pekerjaan: %s\n", result.title)
@@ -105,7 +105,7 @@ func main() {
 			if ans5 == 1 {
 				kecocokanUser(&pekerjaan, nPekerjaan)
 				selectionSort(&pekerjaan, nPekerjaan)
-				fmt.Println("berikut daftar pekerjaan yang apling cocok denganmu! ")
+				fmt.Println("Berikut daftar pekerjaan yang apling cocok denganmu! ")
 				for i = 0; i < nPekerjaan; i++ {
 					fmt.Printf("%d. %s \n", i+1, pekerjaan[i].title)
 				}
