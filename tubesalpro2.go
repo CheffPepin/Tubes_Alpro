@@ -105,7 +105,7 @@ func main() {
 			if ans5 == 1 {
 				kecocokanUser(&pekerjaan, nPekerjaan)
 				selectionSort(&pekerjaan, nPekerjaan)
-				fmt.Println("Berikut daftar pekerjaan yang apling cocok denganmu! ")
+				fmt.Println("Berikut daftar pekerjaan yang paling cocok denganmu! ")
 				for i = 0; i < nPekerjaan; i++ {
 					fmt.Printf("%d. %s \n", i+1, pekerjaan[i].title)
 				}
@@ -120,10 +120,12 @@ func main() {
 				InsertionSort(&dataPekerjaan, N)
 
 				fmt.Println("Berikut seluruh data pekerjaan yang sesuai dengan range gaji yang anda inginkan!")
-
+				fmt.Printf("| %-2s | %-30s | %-12s |\n", "No", "Pekerjaan", "Gaji")
+				fmt.Println("------------------------------------------------------")
 				for i = 0; i < N; i++ {
 					fmt.Printf("| %-2d | %-30s | %-12d |\n", i+1, dataPekerjaan[i].title, dataPekerjaan[i].gaji)
 				}
+				fmt.Println("------------------------------------------------------")
 			}
 
 		case 5:
