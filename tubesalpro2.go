@@ -51,18 +51,21 @@ func main() {
 		switch nMenu {
 		case 1:
 			fmt.Println()
+			fmt.Println("INPUT YOUR DATA")
+			fmt.Println("----------------------")
 			inputData(&profile)
 
 		case 2:
 			fmt.Println()
 			fmt.Println("Berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
+			fmt.Println("-----------------------------------------------------------------------")
 			rekomendasiKarir(&pekerjaan[0], profile[0].minat, profile[0].bakat)
 			rekomendasiKarir(&pekerjaan[1], profile[1].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[3], profile[1].minat, profile[0].bakat)
-
+			
 			nPekerjaan = 4
-
+			
 			for i = 0; i < nPekerjaan; i++ {
 				profile[i].karir = pekerjaan[i].title
 			}
@@ -74,14 +77,21 @@ func main() {
 			}
 
 		case 3:
-			fmt.Println("Berdasarkan apa Anda ingin mengkategorikan pekerjaan yang dicari?")
+			fmt.Println("Kategori Pekerjaan")
+			fmt.Println("------------------")
 			fmt.Println("1. Nama")
 			fmt.Println("2. Industri")
+			fmt.Println("------------------")
+			fmt.Print("Berdasarkan apa Anda ingin mengkategorikan pekerjaan yang dicari? ")
 			fmt.Scan(&ans3)
 			if ans3 == 1 {
 				var result jobbie
-				fmt.Println("Pekerjaan apa yang ingin anda jelajahi hari ini?")
+				fmt.Println()
+				fmt.Println("Kategori pekerjaan by Nama")
+				fmt.Println("---------------------------")
+				fmt.Print("Pekerjaan apa yang ingin anda jelajahi hari ini?")
 				fmt.Scan(&ans4)
+				fmt.Println()
 
 				sequentialSearch(ans4, &result)
 
@@ -89,20 +99,27 @@ func main() {
 					fmt.Println("Maaf pekerjaan yang anda cari tidak ada dalam database kami")
 				} else {
 					fmt.Println("Berikut adalah data dari pekerjaan yang anda cari!")
+					fmt.Println("--------------------------------------------------")
 					fmt.Printf("Nama pekerjaan: %s\n", result.title)
 					fmt.Printf("Rata-Rata Gaji: Rp %d\n", result.gaji)
 				}
 			} else if ans3 == 2 {
+				fmt.Println()
 				selectionSortIndustri()
 				binSearch()
 			}
 		case 4:
-			fmt.Println("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda?")
+			fmt.Println("Daftar Rekomendasi Karir")
+			fmt.Println("-------------------------")
 			fmt.Println("1. Kecocokan minat dan bakat")
 			fmt.Println("2. Gaji")
+			fmt.Print("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda?")
 			fmt.Scan(&ans5)
-
+			
 			if ans5 == 1 {
+				fmt.Println()
+				fmt.Println("Rekomendasi Karir by Minat dan Bakat")
+				fmt.Println("-------------------------------------")
 				kecocokanUser(&pekerjaan, nPekerjaan)
 				selectionSort(&pekerjaan, nPekerjaan)
 				fmt.Println("Berikut daftar pekerjaan yang paling cocok denganmu! ")
@@ -110,6 +127,9 @@ func main() {
 					fmt.Printf("%d. %s \n", i+1, pekerjaan[i].title)
 				}
 			} else if ans5 == 2 {
+				fmt.Println()
+				fmt.Println("Rekomendasi Karir by Gaji")
+				fmt.Println("----------------------------------------")
 				fmt.Println("Masukkan range gaji yang ingin anda cari")
 				fmt.Print("Range gaji minimum: ")
 				fmt.Scan(&min)
@@ -127,7 +147,6 @@ func main() {
 				}
 				fmt.Println("------------------------------------------------------")
 			}
-
 		case 5:
 			statistik(profile, nPekerjaan, pekerjaan)
 
@@ -135,7 +154,10 @@ func main() {
 			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda?")
 			fmt.Println("1. Ya")
 			fmt.Println("2. Tidak")
+			fmt.Print("Jawabanmu: ")
 			fmt.Scan(&ans6)
+			fmt.Println()
+			
 			if ans6 == 1 {
 				editPekerjaan(&profile, &nPekerjaan)
 				updatePekerjaan(profile, nPekerjaan, &pekerjaan)
@@ -198,6 +220,7 @@ func inputData(D *tabProfile) {
 func daftarMinat() {
 	fmt.Println()
 	fmt.Println("Dari daftar minat dan bakat dibawah ini, pilihlah 2 yang sesuai dengan Anda")
+	fmt.Println("---------------------------------------------------------------------------")
 	fmt.Println("Minat: ")
 	fmt.Println("1. Minat dalam bidang kuliner dan memasak")
 	fmt.Println("2. Minat dalam bidang teknologi informasi dan pemroggraman")
@@ -223,6 +246,7 @@ func daftarBakat() {
 	fmt.Println("6. Bakat seni")
 
 }
+
 
 //untuk menu 2
 
@@ -373,14 +397,17 @@ func binSearch() {
 	var left, mid, right int
 	var i, j int
 	var d string
-
+	
+	fmt.Println("Kategori pekerjaan by Industri")
+	fmt.Println("------------------------------")
 	fmt.Println("Berikut daftar Industri:")
 	for i < 11 {
 		fmt.Printf("%d. %s\n", i+1, industri[i])
 		i++
 	}
-	fmt.Print("Apa industri yang Anda cari? ")
+	fmt.Print("Apa industri yang Anda cari (contoh: Baca)? ")
 	fmt.Scan(&d)
+	fmt.Println()
 
 	left = 0
 	right = 10
@@ -479,15 +506,14 @@ func kecocokanUser(job *tabMinat, y int) {
 
 	n = y
 
-	fmt.Println()
-	fmt.Println("dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
+	fmt.Println("Dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
 
 	for i = 0; i < y; i++ {
 		fmt.Printf("%d. %s\n", i+1, job[i].title)
 	}
 
 	for i = 0; i < y; i++ {
-		fmt.Printf("urut no %d?", i+1)
+		fmt.Printf("Urut no %d?", i+1)
 		fmt.Scan(&x)
 		job[x-1].id = job[x-1].id + n
 		n--
@@ -629,9 +655,13 @@ func InsertionSort(masukRange *tabMinat, n int) {
 
 func editPekerjaan(p *tabProfile, n *int) {
 	var ansD int
-	fmt.Println("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
+	fmt.Println("-------------------")
+	fmt.Println("Edit Data Pekerjaan")
+	fmt.Println("-------------------")
 	fmt.Println("1. Menghapus")
 	fmt.Println("2. Menambahkan")
+	fmt.Println()
+	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
 	fmt.Scan(&ansD)
 	if ansD == 1 {
 		hapusP(p, n)
@@ -802,7 +832,11 @@ func statistik(p tabProfile, n int, job tabMinat) {
 	var i, pass, ans, j, total int
 	var temp jobbie
 	var arrUrut tabMinat
-
+	
+	fmt.Println("------------------------------")
+	fmt.Println("Statistik Kecocokan Pekerjaan")
+	fmt.Println("------------------------------")
+	
 	for i = 0; i < n; i++ {
 		arrUrut[i] = job[i]
 	}
@@ -835,13 +869,11 @@ func statistik(p tabProfile, n int, job tabMinat) {
 
 	}
 
-	for i = 0; i < n; i++ {
-		fmt.Println(p[i].cucok)
-	}
 
 	fmt.Println("Apakah anda sudah membuat daftar rekomendasi pekerjaan berdasarkan minat dan bakat?")
 	fmt.Println("1. Ya")
-	fmt.Println("2. tidak")
+	fmt.Println("2. Tidak")
+	fmt.Print("Jawabanmu: ")
 	fmt.Scan(&ans)
 
 	if ans == 1 {
@@ -879,11 +911,17 @@ func statistik(p tabProfile, n int, job tabMinat) {
 	for i = 0; i < n; i++ {
 		p[i].cucok = (p[i].cucok / float64(total)) * 100
 	}
-
-	fmt.Printf("nilai total = %d\n", total)
-
+	
+	fmt.Printf("Nilai total = %d\n", total)
+	fmt.Println()
+	fmt.Println("-----------------------------------")
+	fmt.Println("List Persentase Kecocokan Pekerjaan")
+	fmt.Println("-----------------------------------")
+	fmt.Println()
+	fmt.Printf("| %-3s | %-30s | %-9ss |\n", "No", "Pekerjaan", "Persentase")
+	fmt.Println("------------------------------------------------------")
 	for i = 0; i < n; i++ {
-		fmt.Printf("| %-3d | %-24s | %-9.2f%% |\n", i+1, arrUrut[i].title, p[i].cucok)
+		fmt.Printf("| %-3d | %-30s | %-9.2f%% |\n", i+1, arrUrut[i].title, p[i].cucok)
 	}
-
+	fmt.Println("------------------------------------------------------")
 }
