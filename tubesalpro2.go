@@ -45,10 +45,10 @@ func main() {
 	var nPekerjaan int
 
 	menu()
-	fmt.Print("What step would you like to do first? ")
+	fmt.Print("Pilih langkah pertama Anda? ")
 	fmt.Scan(&nMenu)
 
-	for nMenu != 7 {
+	for nMenu != 8 {
 		switch nMenu {
 		case 1:
 			fmt.Println()
@@ -201,7 +201,9 @@ func menu() {
 	fmt.Println("4. Daftar rekomendasi karier Anda")
 	fmt.Println("5. Statistik Anda")
 	fmt.Println("6. Ubah data Anda")
-	fmt.Println("7. Exit")
+	fmt.Println("7. Profile Anda")
+	fmt.Println("8. Exit")
+	
 }
 
 func inputData(D *tabProfile) {
@@ -259,8 +261,6 @@ func daftarBakat() {
 //untuk menu 2
 
 func rekomendasiKarir(job *jobbie, nMinat, nBakat int) {
-
-	fmt.Println(nMinat, nBakat, kuliner[nBakat-1])
 
 	if nMinat == 1 {
 		*job = kuliner[nBakat-1]
