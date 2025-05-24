@@ -70,9 +70,6 @@ func main() {
 				profile[i].karir = pekerjaan[i].title
 			}
 
-			fmt.Println(profile, nPekerjaan, pekerjaan)
-			updatePekerjaan(profile, nPekerjaan, &pekerjaan)
-
 			fmt.Printf("| %-3s | %-25s |\n", "No", "Rekomendasi Pekerjaan")
 			fmt.Println("|-----|---------------------------|")
 
@@ -159,9 +156,9 @@ func main() {
 			statistik(profile, nPekerjaan, pekerjaan)
 
 		case 6:
-			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda?")
-			fmt.Println("1. Ya")
-			fmt.Println("2. Tidak")
+			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda atau mereset?")
+			fmt.Println("1. Mengubah")
+			fmt.Println("2. Reset")
 			fmt.Print("Jawabanmu: ")
 			fmt.Scan(&ans6)
 			fmt.Println()
@@ -170,12 +167,15 @@ func main() {
 				editPekerjaan(&profile, &nPekerjaan)
 				updatePekerjaan(profile, nPekerjaan, &pekerjaan)
 
+			} else {
+				reset(&profile, &nPekerjaan, &pekerjaan)
 			}
 
 			for i = 0; i < nPekerjaan; i++ {
 				fmt.Printf("%d. %s\n", i+1, profile[i].karir)
 			}
-		case 7 : 
+
+		case 7:
 			hasilQ(pekerjaan, profile, nPekerjaan)
 		}
 
@@ -731,6 +731,8 @@ func tambahP(p *tabProfile, n *int) {
 	}
 }
 
+// menu 6
+
 func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
 	var i, j int
 	var temp jobbie
@@ -836,6 +838,24 @@ func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
 
 }
 
+func reset(p *tabProfile, n *int, job *tabMinat) {
+	var i int
+	for i = 0; i < *n; i++ {
+
+		p[i].karir = " "
+		job[i].title = " "
+	}
+
+	for i = 0; i < *n; i++ {
+
+		job[i].id = 0
+		job[i].kodeUnik = 0
+		job[i].gaji = 0
+		*n = 0
+	}
+
+}
+
 //menu 5
 
 func statistik(p tabProfile, n int, job tabMinat) {
@@ -936,8 +956,8 @@ func statistik(p tabProfile, n int, job tabMinat) {
 }
 
 func hasilQ(j tabMinat, d tabProfile, n int) {
-	var i int 
-	
+	var i int
+
 	fmt.Println("Summary")
 	fmt.Println("--------")
 	fmt.Println("Name :", d[i].nama)
@@ -946,5 +966,5 @@ func hasilQ(j tabMinat, d tabProfile, n int) {
 	for i = 0; i < n; i++ {
 		fmt.Printf("%d. %s\n", i+1, j[i].title)
 	}
-	
+
 }
