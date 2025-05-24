@@ -45,10 +45,10 @@ func main() {
 	var nPekerjaan int
 
 	menu()
-	fmt.Print("Pilih langkah pertama Anda? ")
+	fmt.Print("What step would you like to do first? ")
 	fmt.Scan(&nMenu)
 
-	for nMenu != 8 {
+	for nMenu != 7 {
 		switch nMenu {
 		case 1:
 			fmt.Println()
@@ -141,6 +141,7 @@ func main() {
 				fmt.Print("Range gaji maximum: ")
 				fmt.Scan(&max)
 
+				gajiMinatBakat(pekerjaan, nPekerjaan, min, max)
 				isInRange(&dataPekerjaan, &N, min, max)
 				InsertionSort(&dataPekerjaan, N)
 
@@ -201,9 +202,7 @@ func menu() {
 	fmt.Println("4. Daftar rekomendasi karier Anda")
 	fmt.Println("5. Statistik Anda")
 	fmt.Println("6. Ubah data Anda")
-	fmt.Println("7. Profile Anda")
-	fmt.Println("8. Exit")
-	
+	fmt.Println("7. Exit")
 }
 
 func inputData(D *tabProfile) {
@@ -261,6 +260,8 @@ func daftarBakat() {
 //untuk menu 2
 
 func rekomendasiKarir(job *jobbie, nMinat, nBakat int) {
+
+	fmt.Println(nMinat, nBakat, kuliner[nBakat-1])
 
 	if nMinat == 1 {
 		*job = kuliner[nBakat-1]
@@ -560,6 +561,31 @@ func selectionSort(job *tabMinat, n int) {
 
 //insertion sort untuk memilah gaji yang masuk range dan mengurutkannya
 
+func gajiMinatBakat(job tabMinat, n, batasBawah, batasAtas int) {
+	var i, j int
+	var arrUrut tabMinat
+
+	j = 0
+
+	for i = 0; i < n; i++ {
+		if job[i].gaji > batasBawah && job[i].gaji < batasAtas {
+			arrUrut[j] = job[i]
+			j++
+		}
+	}
+
+	if j == 0 {
+		fmt.Println("Maaf tidak ada pekerjaan yang sesuai minat dan bakat anda yang sesuai dengan range gaji yang anda input")
+	} else {
+		i = 0
+		fmt.Println("Berikut list rekomendasi pekerjaanmu yang sesuai dengan range gaji yang anda input")
+		for i = 0; i < j; i++ {
+			fmt.Println("| %-2d | %-30s | %-12d |\n", i+1, arrUrut[i].title, arrUrut[i].gaji)
+		}
+	}
+
+}
+
 func isInRange(masukRange *tabMinat, n *int, batasBawah, batasAtas int) {
 	var i int
 	*n = 0
@@ -669,8 +695,8 @@ func editPekerjaan(p *tabProfile, n *int) {
 	fmt.Println("Edit Data Pekerjaan")
 	fmt.Println("-------------------")
 	fmt.Println("1. Menghapus")
-	fmt.Println("2. Menambahkan")	
-	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan (1/2)?")
+	fmt.Println("2. Menambahkan")
+	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
 	fmt.Scan(&ansD)
 	if ansD == 1 {
 		hapusP(p, n)
@@ -682,8 +708,7 @@ func editPekerjaan(p *tabProfile, n *int) {
 func hapusP(p *tabProfile, n *int) {
 	var i, hapus int
 
-	fmt.Println()
-	fmt.Println("Pekerjaan berapa yang Anda ingin hapus? (1/2/3/4)")
+	fmt.Println("Pekerjaan berapa yang Anda ingin hapus?")
 
 	for i = 0; i < *n; i++ {
 		fmt.Printf("%d. %s\n", i+1, p[i].karir)
@@ -903,7 +928,7 @@ func statistik(p tabProfile, n int, job tabMinat) {
 	fmt.Println("Apakah anda sudah membuat daftar rekomendasi pekerjaan berdasarkan minat dan bakat?")
 	fmt.Println("1. Ya")
 	fmt.Println("2. Tidak")
-	fmt.Print("Jawabanmu (1/2): ")
+	fmt.Print("Jawabanmu: ")
 	fmt.Scan(&ans)
 
 	if ans == 1 {
