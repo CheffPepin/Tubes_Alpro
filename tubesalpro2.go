@@ -175,6 +175,8 @@ func main() {
 			for i = 0; i < nPekerjaan; i++ {
 				fmt.Printf("%d. %s\n", i+1, profile[i].karir)
 			}
+		case 7 : 
+			hasilQ(pekerjaan, profile, nPekerjaan)
 		}
 
 		fmt.Println()
@@ -931,4 +933,18 @@ func statistik(p tabProfile, n int, job tabMinat) {
 		fmt.Printf("| %-3d | %-30s | %-9.2f%% |\n", i+1, arrUrut[i].title, p[i].cucok)
 	}
 	fmt.Println("------------------------------------------------------")
+}
+
+func hasilQ(j tabMinat, d tabProfile, n int) {
+	var i int 
+	
+	fmt.Println("Summary")
+	fmt.Println("--------")
+	fmt.Println("Name :", d[i].nama)
+	fmt.Println("NIM :", d[i].nim)
+	fmt.Println("Your Job Recommendation: ")
+	for i = 0; i < n; i++ {
+		fmt.Printf("%d. %s\n", i+1, j[i].title)
+	}
+	
 }
