@@ -669,8 +669,8 @@ func editPekerjaan(p *tabProfile, n *int) {
 	fmt.Println("Edit Data Pekerjaan")
 	fmt.Println("-------------------")
 	fmt.Println("1. Menghapus")
-	fmt.Println("2. Menambahkan")
-	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
+	fmt.Println("2. Menambahkan")	
+	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan (1/2)?")
 	fmt.Scan(&ansD)
 	if ansD == 1 {
 		hapusP(p, n)
@@ -682,7 +682,8 @@ func editPekerjaan(p *tabProfile, n *int) {
 func hapusP(p *tabProfile, n *int) {
 	var i, hapus int
 
-	fmt.Println("Pekerjaan berapa yang Anda ingin hapus?")
+	fmt.Println()
+	fmt.Println("Pekerjaan berapa yang Anda ingin hapus? (1/2/3/4)")
 
 	for i = 0; i < *n; i++ {
 		fmt.Printf("%d. %s\n", i+1, p[i].karir)
@@ -902,7 +903,7 @@ func statistik(p tabProfile, n int, job tabMinat) {
 	fmt.Println("Apakah anda sudah membuat daftar rekomendasi pekerjaan berdasarkan minat dan bakat?")
 	fmt.Println("1. Ya")
 	fmt.Println("2. Tidak")
-	fmt.Print("Jawabanmu: ")
+	fmt.Print("Jawabanmu (1/2): ")
 	fmt.Scan(&ans)
 
 	if ans == 1 {
