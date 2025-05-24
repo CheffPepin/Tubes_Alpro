@@ -6,8 +6,8 @@ const NMAX int = 66
 
 type jobbie struct {
 	title    string
-	kodeUnik int
 	id       int
+	kodeUnik int
 	gaji     int
 }
 
@@ -24,7 +24,7 @@ type tabMinat [NMAX]jobbie
 
 //aray
 var industri = []string{"Kuliner", "TI", "Desain", "Kesehatan", "Mekanik", "Pariwisata", "Baca", "Kebun", "Olahraga", "Berkarya", "Jelajah"}
-
+var kuliner = []jobbie{{"Food_Blogger", 13, 11, 4500000}, {"kepala_koki", 14, 11, 9250000}, {"Quality_Control_Makanan", 15, 11, 10000000}, {"Chef", 16, 11, 11500000}, {"Manajer_Produksi_Kuliner", 17, 11, 12500000}, {"Food_Photographer", 18, 11, 13500000}}
 var TI = []jobbie{{"IT_Support", 25, 22, 5804075}, {"IT_Project_Manager", 26, 22, 10710269}, {"Programmer", 27, 22, 10000000}, {"UI/UX_Designer", 28, 22, 5000000}, {"Software_Engineer", 29, 22, 14750000}, {"Game_Designer", 30, 22, 7950000}}
 var desain = []jobbie{{"Art_Director", 37, 33, 20025000}, {"Creative_Designer", 38, 33, 4588523}, {"Desainer_Marketing_Digital", 39, 33, 4500000}, {"Animator", 40, 33, 6190000}, {"Desainer_UI_bebasis_Data", 41, 33, 5000000}, {"Graphic_Designer", 42, 33, 6190000}}
 var kesehatan = []jobbie{{"Perawat", 49, 44, 5500000}, {"Supervisor_Medis", 50, 44, 9000000}, {"Analis_Kesehatan", 51, 44, 7000000}, {"Terapis_Seni", 52, 44, 6000000}, {"Statistik_Kesehatan", 53, 44, 7500000}, {"Desainer_Edukasi_Kesehatan", 54, 44, 5500000}}
@@ -35,7 +35,6 @@ var kebun = []jobbie{{"Penyuluh_Pertanian", 97, 88, 4000000}, {"Manajer_Kebun", 
 var olahraga = []jobbie{{"Instruktur_Komunitas", 109, 99, 4720820}, {"Pelatih_Komunitas", 110, 99, 5375000}, {"Analis_Kinerja_Atlet", 111, 99, 10145563}, {"Pembuat_Konten_Olahraga", 112, 99, 4700000}, {"Analis_Statistik_Olahraga", 123, 99, 10145563}, {"Desainer_Merchandise_Olahraga", 124, 99, 6190000}}
 var berkarya = []jobbie{{"Kurator_Galeri", 122, 110, 12500000}, {"Manajer_Studio_Seni", 123, 110, 21000000}, {"Sejarawan_Seni", 124, 110, 7500000}, {"Seniman_Kontemporer", 125, 110, 7500000}, {"Visualis_Data_Artistik", 126, 110, 6190000}, {"Pelukis", 127, 110, 7500000}}
 var jelajah = []jobbie{{"Pemandu_Wisata", 132, 120, 4000000}, {"Manajer_Tur", 133, 120, 21000000}, {"Peneliti_Budaya", 134, 120, 7500000}, {"Travel_Photographer", 135, 120, 5125000}, {"Analis_Data_Wisata", 136, 120, 6190000}, {"Travel_Illustrator", 137, 120, 4725000}}
-var kuliner = []jobbie{{"Food_Blogger", 13, 11, 4500000}, {"Kepala_koki", 14, 11, 9250000}, {"Quality_Control_Makanan", 15, 11, 10000000}, {"Chef", 16, 11, 11500000}, {"Manajer_Produksi_Kuliner", 17, 11, 12500000}, {"Food_Photographer", 18, 11, 13500000}}
 
 func main() {
 	var ans4 string
@@ -52,47 +51,37 @@ func main() {
 		switch nMenu {
 		case 1:
 			fmt.Println()
-			fmt.Println("INPUT YOUR DATA")
-			fmt.Println("----------------------")
 			inputData(&profile)
 
 		case 2:
 			fmt.Println()
 			fmt.Println("Berikut Daftar rekomendasi pekerjaan berdasarkan minat dan bakat anda!")
-			fmt.Println("-----------------------------------------------------------------------")
 			rekomendasiKarir(&pekerjaan[0], profile[0].minat, profile[0].bakat)
 			rekomendasiKarir(&pekerjaan[1], profile[1].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[2], profile[0].minat, profile[1].bakat)
 			rekomendasiKarir(&pekerjaan[3], profile[1].minat, profile[0].bakat)
+
 			nPekerjaan = 4
 
 			for i = 0; i < nPekerjaan; i++ {
 				profile[i].karir = pekerjaan[i].title
 			}
 
-			fmt.Printf("| %-3s | %-25s |\n", "No", "Rekomendasi Pekerjaan")
-			fmt.Println("|-----|---------------------------|")
+			updatePekerjaan(profile, nPekerjaan, &pekerjaan)
 
 			for i = 0; i < nPekerjaan; i++ {
-				fmt.Printf("| %-3d | %-25s |\n", i+1, pekerjaan[i].title)
+				fmt.Printf("%d. %s\n", i+1, pekerjaan[i].title)
 			}
 
 		case 3:
-			fmt.Println("Kategori Pekerjaan")
-			fmt.Println("------------------")
+			fmt.Println("Berdasarkan apa Anda ingin mengkategorikan pekerjaan yang dicari?")
 			fmt.Println("1. Nama")
 			fmt.Println("2. Industri")
-			fmt.Println("------------------")
-			fmt.Print("Berdasarkan apa Anda ingin mengkategorikan pekerjaan yang dicari? ")
 			fmt.Scan(&ans3)
 			if ans3 == 1 {
 				var result jobbie
-				fmt.Println()
-				fmt.Println("Kategori pekerjaan by Nama")
-				fmt.Println("---------------------------")
-				fmt.Print("Pekerjaan apa yang ingin anda jelajahi hari ini?")
+				fmt.Println("Pekerjaan apa yang ingin anda jelajahi hari ini?")
 				fmt.Scan(&ans4)
-				fmt.Println()
 
 				sequentialSearch(ans4, &result)
 
@@ -100,48 +89,33 @@ func main() {
 					fmt.Println("Maaf pekerjaan yang anda cari tidak ada dalam database kami")
 				} else {
 					fmt.Println("Berikut adalah data dari pekerjaan yang anda cari!")
-					fmt.Println("--------------------------------------------------")
 					fmt.Printf("Nama pekerjaan: %s\n", result.title)
 					fmt.Printf("Rata-Rata Gaji: Rp %d\n", result.gaji)
 				}
 			} else if ans3 == 2 {
-				fmt.Println()
 				selectionSortIndustri()
 				binSearch()
 			}
 		case 4:
-			fmt.Println("Daftar Rekomendasi Karir")
-			fmt.Println("-------------------------")
+			fmt.Println("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda?")
 			fmt.Println("1. Kecocokan minat dan bakat")
 			fmt.Println("2. Gaji")
-			fmt.Print("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda?")
 			fmt.Scan(&ans5)
 
 			if ans5 == 1 {
-				fmt.Println()
-				fmt.Println("Rekomendasi Karir by Minat dan Bakat")
-				fmt.Println("-------------------------------------")
 				kecocokanUser(&pekerjaan, nPekerjaan)
 				selectionSort(&pekerjaan, nPekerjaan)
 				fmt.Println("Berikut daftar pekerjaan yang paling cocok denganmu! ")
-				fmt.Printf("| %-3s | %-25s |\n", "No", "Rekomendasi Pekerjaan")
-				fmt.Println("|-----|---------------------------|")
-
 				for i = 0; i < nPekerjaan; i++ {
-					fmt.Printf("| %-3d | %-25s |\n", i+1, pekerjaan[i].title)
+					fmt.Printf("%d. %s \n", i+1, pekerjaan[i].title)
 				}
-
 			} else if ans5 == 2 {
-				fmt.Println()
-				fmt.Println("Rekomendasi Karir by Gaji")
-				fmt.Println("----------------------------------------")
 				fmt.Println("Masukkan range gaji yang ingin anda cari")
 				fmt.Print("Range gaji minimum: ")
 				fmt.Scan(&min)
 				fmt.Print("Range gaji maximum: ")
 				fmt.Scan(&max)
 
-				gajiMinatBakat(pekerjaan, nPekerjaan, min, max)
 				isInRange(&dataPekerjaan, &N, min, max)
 				InsertionSort(&dataPekerjaan, N)
 
@@ -153,31 +127,25 @@ func main() {
 				}
 				fmt.Println("------------------------------------------------------")
 			}
+
 		case 5:
 			statistik(profile, nPekerjaan, pekerjaan)
 
 		case 6:
-			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda atau mereset?")
-			fmt.Println("1. Mengubah")
-			fmt.Println("2. Reset")
-			fmt.Print("Jawabanmu: ")
+			fmt.Println("Apakah Anda ingin mengubah data rekomendasi Pekerjaan Anda?")
+			fmt.Println("1. Ya")
+			fmt.Println("2. Tidak")
 			fmt.Scan(&ans6)
-			fmt.Println()
-
 			if ans6 == 1 {
 				editPekerjaan(&profile, &nPekerjaan)
 				updatePekerjaan(profile, nPekerjaan, &pekerjaan)
 
-			} else {
-				reset(&profile, &nPekerjaan, &pekerjaan)
 			}
 
 			for i = 0; i < nPekerjaan; i++ {
 				fmt.Printf("%d. %s\n", i+1, profile[i].karir)
+				fmt.Println(pekerjaan[i])
 			}
-
-		case 7:
-			hasilQ(pekerjaan, profile, nPekerjaan)
 		}
 
 		fmt.Println()
@@ -216,31 +184,30 @@ func inputData(D *tabProfile) {
 
 	daftarMinat()
 	fmt.Print("Jawabanmu: ")
-	//for i = 0; i < 2; i++ {
-	fmt.Scan(&D[0].minat, &D[1].minat)
-	//}
+	for i = 0; i < 2; i++ {
+		fmt.Scan(&D[i].minat)
+	}
 
 	daftarBakat()
 	fmt.Print("Jawabanmu: ")
-	//for i = 0; i < 2; i++ {
-	fmt.Scan(&D[0].bakat, &D[1].bakat)
-	//}
+	for i = 0; i < 2; i++ {
+		fmt.Scan(&D[i].bakat)
+	}
 }
 
 func daftarMinat() {
 	fmt.Println()
 	fmt.Println("Dari daftar minat dan bakat dibawah ini, pilihlah 2 yang sesuai dengan Anda")
-	fmt.Println("---------------------------------------------------------------------------")
 	fmt.Println("Minat: ")
-	fmt.Println("1.  Minat dalam bidang kuliner dan memasak")
-	fmt.Println("2.  Minat dalam bidang teknologi informasi dan pemroggraman")
-	fmt.Println("3.  Minat dalam desain grafis dan seni digital")
-	fmt.Println("4.  Minat dalam kebidanan atau perawatan Kesehatan")
-	fmt.Println("5.  Minat dalam mekanik dan perbaikan otomotif")
-	fmt.Println("6.  Minat dalam bidang pariwisatan dan perhotelan")
-	fmt.Println("7.  Minat dalam membaca buku dan menulis puisi secara hobi")
-	fmt.Println("8.  Minat dalam berkebun dan berkegiatan di alam terbuka")
-	fmt.Println("9.  Minat dalam bermain olahraga secara santai tanpa ambisi kompetisi")
+	fmt.Println("1. Minat dalam bidang kuliner dan memasak")
+	fmt.Println("2. Minat dalam bidang teknologi informasi dan pemroggraman")
+	fmt.Println("3. Minat dalam desain grafis dan seni digital")
+	fmt.Println("4. Minat dalam kebidanan atau perawatan Kesehatan")
+	fmt.Println("5. Minat dalam mekanik dan perbaikan otomotif")
+	fmt.Println("6. Minat dalam bidang pariwisatan dan perhotelan")
+	fmt.Println("7. Minat dalam membaca buku dan menulis puisi secara hobi")
+	fmt.Println("8. Minat dalam berkebun dan berkegiatan di alam terbuka")
+	fmt.Println("9. Minat dalam bermain olahraga secara santai tanpa ambisi kompetisi")
 	fmt.Println("10. Minat dalam melukis atau membuat karya seni sebagai hobi")
 	fmt.Println("11. Minat dalam melakukan perjalanan dan menjelajahi tempat-tempat baru")
 }
@@ -261,30 +228,28 @@ func daftarBakat() {
 
 func rekomendasiKarir(job *jobbie, nMinat, nBakat int) {
 
-	fmt.Println(nMinat, nBakat, kuliner[nBakat-1])
-
 	if nMinat == 1 {
-		*job = kuliner[nBakat-1]
+		job.title = kuliner[nBakat-1].title
 	} else if nMinat == 2 {
-		*job = TI[nBakat-1]
+		job.title = TI[nBakat-1].title
 	} else if nMinat == 3 {
-		*job = desain[nBakat-1]
+		job.title = desain[nBakat-1].title
 	} else if nMinat == 4 {
-		*job = kesehatan[nBakat-1]
+		job.title = kesehatan[nBakat-1].title
 	} else if nMinat == 5 {
-		*job = mekanik[nBakat-1]
+		job.title = mekanik[nBakat-1].title
 	} else if nMinat == 6 {
-		*job = pariwisata[nBakat-1]
+		job.title = pariwisata[nBakat-1].title
 	} else if nMinat == 7 {
-		*job = baca[nBakat-1]
+		job.title = baca[nBakat-1].title
 	} else if nMinat == 8 {
-		*job = kebun[nBakat-1]
+		job.title = kebun[nBakat-1].title
 	} else if nMinat == 9 {
-		*job = olahraga[nBakat-1]
+		job.title = olahraga[nBakat-1].title
 	} else if nMinat == 10 {
-		*job = berkarya[nBakat-1]
+		job.title = berkarya[nBakat-1].title
 	} else if nMinat == 11 {
-		*job = jelajah[nBakat-1]
+		job.title = jelajah[nBakat-1].title
 	} else {
 		job.title = "Try Again"
 	}
@@ -409,16 +374,13 @@ func binSearch() {
 	var i, j int
 	var d string
 
-	fmt.Println("Kategori pekerjaan by Industri")
-	fmt.Println("------------------------------")
 	fmt.Println("Berikut daftar Industri:")
 	for i < 11 {
 		fmt.Printf("%d. %s\n", i+1, industri[i])
 		i++
 	}
-	fmt.Print("Apa industri yang Anda cari (contoh: Baca)? ")
+	fmt.Print("Apa industri yang Anda cari? ")
 	fmt.Scan(&d)
-	fmt.Println()
 
 	left = 0
 	right = 10
@@ -517,14 +479,15 @@ func kecocokanUser(job *tabMinat, y int) {
 
 	n = y
 
-	fmt.Println("Dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
+	fmt.Println()
+	fmt.Println("dari keempat rekomendasi pekerjaan yang kami berikan, mana yang paling anda minati? ")
 
 	for i = 0; i < y; i++ {
 		fmt.Printf("%d. %s\n", i+1, job[i].title)
 	}
 
 	for i = 0; i < y; i++ {
-		fmt.Printf("Urut no %d? ", i+1)
+		fmt.Printf("urut no %d?", i+1)
 		fmt.Scan(&x)
 		job[x-1].id = job[x-1].id + n
 		n--
@@ -542,8 +505,8 @@ func selectionSort(job *tabMinat, n int) {
 		idxMax = pass - 1
 		i = pass
 
-		for i < n {
-			if (job[i].kodeUnik - job[i].id) > (job[idxMax].kodeUnik - job[idxMax].id) {
+		for i < 4 {
+			if (job[i].id - job[i].kodeUnik) > (job[idxMax].id - job[idxMax].kodeUnik) {
 				idxMax = i
 			}
 			i++
@@ -560,31 +523,6 @@ func selectionSort(job *tabMinat, n int) {
 }
 
 //insertion sort untuk memilah gaji yang masuk range dan mengurutkannya
-
-func gajiMinatBakat(job tabMinat, n, batasBawah, batasAtas int) {
-	var i, j int
-	var arrUrut tabMinat
-
-	j = 0
-
-	for i = 0; i < n; i++ {
-		if job[i].gaji > batasBawah && job[i].gaji < batasAtas {
-			arrUrut[j] = job[i]
-			j++
-		}
-	}
-
-	if j == 0 {
-		fmt.Println("Maaf tidak ada pekerjaan yang sesuai minat dan bakat anda yang sesuai dengan range gaji yang anda input")
-	} else {
-		i = 0
-		fmt.Println("Berikut list rekomendasi pekerjaanmu yang sesuai dengan range gaji yang anda input")
-		for i = 0; i < j; i++ {
-			fmt.Println("| %-2d | %-30s | %-12d |\n", i+1, arrUrut[i].title, arrUrut[i].gaji)
-		}
-	}
-
-}
 
 func isInRange(masukRange *tabMinat, n *int, batasBawah, batasAtas int) {
 	var i int
@@ -691,12 +629,9 @@ func InsertionSort(masukRange *tabMinat, n int) {
 
 func editPekerjaan(p *tabProfile, n *int) {
 	var ansD int
-	fmt.Println("-------------------")
-	fmt.Println("Edit Data Pekerjaan")
-	fmt.Println("-------------------")
+	fmt.Println("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
 	fmt.Println("1. Menghapus")
 	fmt.Println("2. Menambahkan")
-	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan?")
 	fmt.Scan(&ansD)
 	if ansD == 1 {
 		hapusP(p, n)
@@ -734,10 +669,10 @@ func tambahP(p *tabProfile, n *int) {
 	var newJob string
 	fmt.Println("Masukkan maximal 3 pekerjaan baru, jika sudah cukup masukkan #")
 
-	i = 1
+	i = 0
 
 	fmt.Scan(&newJob)
-	for newJob != "#" && i <= 2 {
+	for newJob != "#" && i < 4 {
 		j = 0
 		apyh = false
 		for j < *n && apyh == false {
@@ -757,8 +692,6 @@ func tambahP(p *tabProfile, n *int) {
 	}
 }
 
-// menu 6
-
 func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
 	var i, j int
 	var temp jobbie
@@ -770,7 +703,6 @@ func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
 		for j = 0; j < 6; j++ {
 			if p[i].karir == kuliner[j].title {
 				temp = kuliner[j]
-				fmt.Println(temp)
 			}
 		}
 
@@ -780,106 +712,88 @@ func updatePekerjaan(p tabProfile, n int, job *tabMinat) {
 					temp = TI[j]
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == desain[j].title {
-					temp = desain[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == desain[j].title {
+						temp = desain[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == kesehatan[j].title {
-					temp = kesehatan[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == kesehatan[j].title {
+						temp = kesehatan[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == mekanik[j].title {
-					temp = mekanik[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == mekanik[j].title {
+						temp = mekanik[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == pariwisata[j].title {
-					temp = pariwisata[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == pariwisata[j].title {
+						temp = pariwisata[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == baca[j].title {
-					temp = baca[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == baca[j].title {
+						temp = baca[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == kebun[j].title {
-					temp = kebun[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == kebun[j].title {
+						temp = kebun[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == olahraga[j].title {
-					temp = olahraga[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == olahraga[j].title {
+						temp = olahraga[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == berkarya[j].title {
-					temp = berkarya[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == berkarya[j].title {
+						temp = berkarya[j]
+					}
 				}
 			}
-		}
 
-		if temp.title == "not found" {
-			for j = 0; j < 6; j++ {
-				if p[i].karir == jelajah[j].title {
-					temp = jelajah[j]
+			if temp.title == "not found" {
+				for j = 0; j < 6; j++ {
+					if p[i].karir == jelajah[j].title {
+						temp = jelajah[j]
+					}
 				}
 			}
-		}
 
-		if temp.title != "not found" {
-			job[i] = temp
-		}
+			if temp.title != "not found" {
+				job[i] = temp
+			}
 
-		temp.title = "not found"
-		i++
+			temp.title = "not found"
+			i++
+
+		}
 	}
-
-}
-
-func reset(p *tabProfile, n *int, job *tabMinat) {
-	var i int
-	for i = 0; i < *n; i++ {
-
-		p[i].karir = " "
-		job[i].title = " "
-	}
-
-	for i = 0; i < *n; i++ {
-
-		job[i].id = 0
-		job[i].kodeUnik = 0
-		job[i].gaji = 0
-		*n = 0
-	}
-
 }
 
 //menu 5
@@ -888,10 +802,6 @@ func statistik(p tabProfile, n int, job tabMinat) {
 	var i, pass, ans, j, total int
 	var temp jobbie
 	var arrUrut tabMinat
-
-	fmt.Println("------------------------------")
-	fmt.Println("Statistik Kecocokan Pekerjaan")
-	fmt.Println("------------------------------")
 
 	for i = 0; i < n; i++ {
 		arrUrut[i] = job[i]
@@ -918,17 +828,20 @@ func statistik(p tabProfile, n int, job tabMinat) {
 		j = 0
 		for j < n {
 			if arrUrut[i].title == p[j].karir {
-				p[j].cucok = (float64(job[j].kodeUnik) - float64(job[j].id)) + float64(i+1)
+				p[j].cucok = (float64(job[j].id) - float64(job[j].kodeUnik)) + float64(i+1)
 			}
 			j++
 		}
 
 	}
 
+	for i = 0; i < n; i++ {
+		fmt.Println(p[i].cucok)
+	}
+
 	fmt.Println("Apakah anda sudah membuat daftar rekomendasi pekerjaan berdasarkan minat dan bakat?")
 	fmt.Println("1. Ya")
-	fmt.Println("2. Tidak")
-	fmt.Print("Jawabanmu: ")
+	fmt.Println("2. tidak")
 	fmt.Scan(&ans)
 
 	if ans == 1 {
@@ -967,30 +880,10 @@ func statistik(p tabProfile, n int, job tabMinat) {
 		p[i].cucok = (p[i].cucok / float64(total)) * 100
 	}
 
-	fmt.Printf("Nilai total = %d\n", total)
-	fmt.Println()
-	fmt.Println("-----------------------------------")
-	fmt.Println("List Persentase Kecocokan Pekerjaan")
-	fmt.Println("-----------------------------------")
-	fmt.Println()
-	fmt.Printf("| %-3s | %-30s | %-9ss |\n", "No", "Pekerjaan", "Persentase")
-	fmt.Println("------------------------------------------------------")
-	for i = 0; i < n; i++ {
-		fmt.Printf("| %-3d | %-30s | %-9.2f%% |\n", i+1, arrUrut[i].title, p[i].cucok)
-	}
-	fmt.Println("------------------------------------------------------")
-}
+	fmt.Printf("nilai total = %d\n", total)
 
-func hasilQ(j tabMinat, d tabProfile, n int) {
-	var i int
-
-	fmt.Println("Summary")
-	fmt.Println("--------")
-	fmt.Println("Name :", d[i].nama)
-	fmt.Println("NIM :", d[i].nim)
-	fmt.Println("Your Job Recommendation: ")
 	for i = 0; i < n; i++ {
-		fmt.Printf("%d. %s\n", i+1, j[i].title)
+		fmt.Printf("| %-3d | %-24s | %-9.2f%% |\n", i+1, arrUrut[i].title, p[i].cucok)
 	}
 
 }
