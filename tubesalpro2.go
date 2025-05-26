@@ -711,7 +711,7 @@ func tambahP(p *tabProfile, n *int) {
 
 	i = 1
 
-	if n >= 8 {
+	if *n >= 8 {
 		fmt.Println("Data Penuh")
 	} else {
 
