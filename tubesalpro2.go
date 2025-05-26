@@ -90,7 +90,7 @@ func main() {
 				fmt.Println()
 				fmt.Println("Kategori pekerjaan by Nama")
 				fmt.Println("---------------------------")
-				fmt.Print("Pekerjaan apa yang ingin anda jelajahi hari ini? ")
+				fmt.Print("Pekerjaan apa yang ingin anda jelajahi hari ini?")
 				fmt.Scan(&ans4)
 				fmt.Println()
 
@@ -114,7 +114,7 @@ func main() {
 			fmt.Println("-------------------------")
 			fmt.Println("1. Kecocokan minat dan bakat")
 			fmt.Println("2. Gaji")
-			fmt.Print("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda? ")
+			fmt.Print("Berdasarkan apa Anda ingin membuat list pekerjaan yang cocok dengan anda?")
 			fmt.Scan(&ans5)
 
 			if ans5 == 1 {
@@ -141,11 +141,10 @@ func main() {
 				fmt.Print("Range gaji maximum: ")
 				fmt.Scan(&max)
 
-				gajiMinatBakat(pekerjaan, nPekerjaan, min, max)
 				isInRange(&dataPekerjaan, &N, min, max)
 				InsertionSort(&dataPekerjaan, N)
 
-				fmt.Println("Kemudian ini seluruh data pekerjaan yang sesuai dengan range gaji yang anda inginkan!")
+				fmt.Println("Berikut seluruh data pekerjaan yang sesuai dengan range gaji yang anda inginkan!")
 				fmt.Printf("| %-2s | %-30s | %-12s |\n", "No", "Pekerjaan", "Gaji")
 				fmt.Println("------------------------------------------------------")
 				for i = 0; i < N; i++ {
@@ -204,7 +203,7 @@ func menu() {
 	fmt.Println("6. Ubah data Anda")
 	fmt.Println("7. Profile Anda")
 	fmt.Println("8. Exit")
-
+	
 }
 
 func inputData(D *tabProfile) {
@@ -526,7 +525,7 @@ func kecocokanUser(job *tabMinat, y int) {
 	for i = 0; i < y; i++ {
 		fmt.Printf("Urut no %d? ", i+1)
 		fmt.Scan(&x)
-		job[x-1].kodeUnik = job[x-1].kodeUnik + n
+		job[x-1].id = job[x-1].id + n
 		n--
 	}
 
@@ -555,31 +554,6 @@ func selectionSort(job *tabMinat, n int) {
 
 		pass++
 
-	}
-
-}
-
-func gajiMinatBakat(job tabMinat, n, batasBawah, batasAtas int) {
-	var i, j int
-	var arrUrut tabMinat
-
-	j = 0
-
-	for i = 0; i < n; i++ {
-		if job[i].gaji > batasBawah && job[i].gaji < batasAtas {
-			arrUrut[j] = job[i]
-			j++
-		}
-	}
-
-	if j == 0 {
-		fmt.Println("Maaf tidak ada pekerjaan yang sesuai minat dan bakat anda yang sesuai dengan range gaji yang anda input")
-	} else {
-		i = 0
-		fmt.Println("Berikut list rekomendasi pekerjaanmu yang sesuai dengan range gaji yang anda input")
-		for i = 0; i < j; i++ {
-			fmt.Printf("| %-2d | %-30s | %-12d |\n", i+1, arrUrut[i].title, arrUrut[i].gaji)
-		}
 	}
 
 }
@@ -695,8 +669,8 @@ func editPekerjaan(p *tabProfile, n *int) {
 	fmt.Println("Edit Data Pekerjaan")
 	fmt.Println("-------------------")
 	fmt.Println("1. Menghapus")
-	fmt.Println("2. Menambahkan")
-	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan (1/2)? ")
+	fmt.Println("2. Menambahkan")	
+	fmt.Print("Apa yang Anda ingin lakukan kepada list rekomendasi pekerjaan (1/2)?")
 	fmt.Scan(&ansD)
 	if ansD == 1 {
 		hapusP(p, n)
@@ -709,7 +683,7 @@ func hapusP(p *tabProfile, n *int) {
 	var i, hapus int
 
 	fmt.Println()
-	fmt.Println("Pekerjaan berapa yang Anda ingin hapus? (1/2/3/4) ")
+	fmt.Println("Pekerjaan berapa yang Anda ingin hapus? (1/2/3/4)")
 
 	for i = 0; i < *n; i++ {
 		fmt.Printf("%d. %s\n", i+1, p[i].karir)
@@ -740,9 +714,9 @@ func tambahP(p *tabProfile, n *int) {
 	fmt.Scan(&newJob)
 	for newJob != "#" && i <= 2 {
 		j = 0
-		apyh = true
-		for j < *n && apyh == true {
-			apyh = newJob == p[j].karir
+		apyh = false
+		for j < *n && apyh == false {
+			apyh = newJob != p[j].karir
 			j++
 		}
 
@@ -914,20 +888,17 @@ func statistik(p tabProfile, n int, job tabMinat) {
 		pass++
 	}
 
-
 	// ngitung
 	for i = 0; i < n; i++ {
 		j = 0
 		for j < n {
 			if arrUrut[i].title == p[j].karir {
-				p[j].cucok = (float64(arrUrut[i].kodeUnik) - float64(arrUrut[i].id)) + float64(i+1)
-
+				p[j].cucok = (float64(job[j].kodeUnik) - float64(job[j].id)) + float64(i+1)
 			}
 			j++
 		}
 
 	}
-
 
 	fmt.Println("Apakah anda sudah membuat daftar rekomendasi pekerjaan berdasarkan minat dan bakat?")
 	fmt.Println("1. Ya")
@@ -993,11 +964,8 @@ func hasilQ(j tabMinat, d tabProfile, n int) {
 	fmt.Println("Name :", d[i].nama)
 	fmt.Println("NIM :", d[i].nim)
 	fmt.Println("Your Job Recommendation: ")
-	fmt.Printf("| %-3s | %-25s |\n", "No", "Rekomendasi Pekerjaan")
-	fmt.Println("|-----|---------------------------|")
-
 	for i = 0; i < n; i++ {
-		fmt.Printf("| %-3d | %-25s |\n", i+1, j[i].title)
+		fmt.Printf("%d. %s\n", i+1, j[i].title)
 	}
 
 }
