@@ -711,6 +711,10 @@ func tambahP(p *tabProfile, n *int) {
 
 	i = 1
 
+	if n >= 8 {
+		fmt.Println("Data Penuh")
+	} else {
+
 	fmt.Scan(&newJob)
 	for newJob != "#" && i <= 2 {
 		j = 0
@@ -729,6 +733,7 @@ func tambahP(p *tabProfile, n *int) {
 			fmt.Scan(&newJob)
 		}
 
+	}
 	}
 }
 
@@ -893,7 +898,8 @@ func statistik(p tabProfile, n int, job tabMinat) {
 		j = 0
 		for j < n {
 			if arrUrut[i].title == p[j].karir {
-				p[j].cucok = (float64(job[j].kodeUnik) - float64(job[j].id)) + float64(i+1)
+				p[j].cucok = (float64(arrUrut[i].kodeUnik) - float64(arrUrut[i].id)) + float64(i+1)
+
 			}
 			j++
 		}
