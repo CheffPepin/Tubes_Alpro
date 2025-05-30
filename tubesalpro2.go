@@ -32,8 +32,8 @@ var mekanik = []jobbie{{"Sales_Engineer_Otomotif", 61, 55, 7500000}, {"Manajer_B
 var pariwisata = []jobbie{{"Customer_Relations_Manager", 73, 66, 9000000}, {"Manajer_Hotel", 74, 66, 15000000}, {"Analis_Pariwisata", 75, 66, 7000000}, {"Event_Organizer", 76, 66, 6000000}, {"Analis_Revenue_Hotel", 77, 66, 9000000}, {"Desainer_Interior_Hotel", 78, 66, 7000000}}
 var baca = []jobbie{{"Jurnalis", 85, 77, 6000000}, {"Kepala_Redaksi", 86, 77, 9500000}, {"Peneliti_Sastra", 87, 77, 7000000}, {"Penulis", 88, 77, 4500000}, {"Penulis_Edukasi_STEM", 89, 77, 5500000}, {"Penyair_Ilustratif", 90, 77, 4725000}}
 var kebun = []jobbie{{"Penyuluh_Pertanian", 97, 88, 4000000}, {"Manajer_Kebun", 98, 88, 16000000}, {"Agronomis", 99, 88, 5280000}, {"Desainer_Lanskap", 100, 88, 9019437}, {"Perencana_Irigasi", 101, 88, 6095000}, {"Fotografer_Alam", 102, 88, 5125000}}
-var olahraga = []jobbie{{"Instruktur_Komunitas", 109, 99, 4720820}, {"Pelatih_Komunitas", 110, 99, 5375000}, {"Analis_Kinerja_Atlet", 111, 99, 10145563}, {"Pembuat_Konten_Olahraga", 112, 99, 4700000}, {"Analis_Statistik_Olahraga", 123, 99, 10145563}, {"Desainer_Merchandise_Olahraga", 124, 99, 6190000}}
-var berkarya = []jobbie{{"Kurator_Galeri", 122, 110, 12500000}, {"Manajer_Studio_Seni", 123, 110, 21000000}, {"Sejarawan_Seni", 124, 110, 7500000}, {"Seniman_Kontemporer", 125, 110, 7500000}, {"Visualis_Data_Artistik", 126, 110, 6190000}, {"Pelukis", 127, 110, 7500000}}
+var olahraga = []jobbie{{"Instruktur_Komunitas", 109, 99, 4720820}, {"Pelatih_Komunitas", 110, 99, 5375000}, {"Analis_Kinerja_Atlet", 111, 99, 10145563}, {"Pembuat_Konten_Olahraga", 112, 99, 4700000}, {"Analis_Statistik_Olahraga", 113, 99, 10145563}, {"Desainer_Merchandise_Olahraga", 114, 99, 6190000}}
+var berkarya = []jobbie{{"Kurator_Galeri", 121, 110, 12500000}, {"Manajer_Studio_Seni", 122, 110, 21000000}, {"Sejarawan_Seni", 123, 110, 7500000}, {"Seniman_Kontemporer", 124, 110, 7500000}, {"Visualis_Data_Artistik", 125, 110, 6190000}, {"Pelukis", 126, 110, 7500000}}
 var jelajah = []jobbie{{"Pemandu_Wisata", 132, 120, 4000000}, {"Manajer_Tur", 133, 120, 21000000}, {"Peneliti_Budaya", 134, 120, 7500000}, {"Travel_Photographer", 135, 120, 5125000}, {"Analis_Data_Wisata", 136, 120, 6190000}, {"Travel_Illustrator", 137, 120, 4725000}}
 var kuliner = []jobbie{{"Food_Blogger", 13, 11, 4500000}, {"Kepala_koki", 14, 11, 9250000}, {"Quality_Control_Makanan", 15, 11, 10000000}, {"Chef", 16, 11, 11500000}, {"Manajer_Produksi_Kuliner", 17, 11, 12500000}, {"Food_Photographer", 18, 11, 13500000}}
 
@@ -70,11 +70,11 @@ func main() {
 				profile[i].karir = pekerjaan[i].title
 			}
 
-			fmt.Printf("| %-3s | %-25s |\n", "No", "Rekomendasi Pekerjaan")
-			fmt.Println("|-----|---------------------------|")
+			fmt.Printf("| %-3s | %-30s |\n", "No", "Rekomendasi Pekerjaan")
+			fmt.Println("|-----|--------------------------------|")
 
 			for i = 0; i < nPekerjaan; i++ {
-				fmt.Printf("| %-3d | %-25s |\n", i+1, pekerjaan[i].title)
+				fmt.Printf("| %-3d | %-30s |\n", i+1, pekerjaan[i].title)
 			}
 
 		case 3:
@@ -170,6 +170,7 @@ func main() {
 
 			} else {
 				reset(&profile, &nPekerjaan, &pekerjaan)
+				fmt.Println("Data ter-Reset")
 			}
 
 			for i = 0; i < nPekerjaan; i++ {
@@ -218,14 +219,20 @@ func inputData(D *tabProfile) {
 
 	daftarMinat()
 	fmt.Print("Jawabanmu: ")
-	//for i = 0; i < 2; i++ {
 	fmt.Scan(&D[0].minat, &D[1].minat)
-	//}
+	if D[0].minat == D[1].minat {
+		fmt.Print("Jawaban sama, harap masukkan jawaban yang berbeda. Minat 2?")
+		fmt.Scan(&D[1].minat)
+	}
 
 	daftarBakat()
 	fmt.Print("Jawabanmu: ")
-	//for i = 0; i < 2; i++ {
+
 	fmt.Scan(&D[0].bakat, &D[1].bakat)
+	if D[0].bakat == D[1].bakat {
+		fmt.Print("Jawaban sama, harap masukkan jawaban yang berbeda. Bakat 2?")
+		fmt.Scan(&D[1].bakat)
+	}
 	//}
 }
 
@@ -523,10 +530,10 @@ func kecocokanUser(job *tabMinat, y int) {
 		fmt.Printf("%d. %s\n", i+1, job[i].title)
 	}
 
-	for i = 0; i < y; i++ {
-		fmt.Printf("Urut no %d? ", i+1)
+	for i = 0; i <= y; i++ {
+		fmt.Printf("Paling Minati ke-%d? ", i+1)
 		fmt.Scan(&x)
-		job[x-1].kodeUnik = job[x-1].kodeUnik + n
+		job[x-1].kodeUnik = job[x-1].kodeUnik + n
 		n--
 	}
 
@@ -715,17 +722,21 @@ func hapusP(p *tabProfile, n *int) {
 		fmt.Printf("%d. %s\n", i+1, p[i].karir)
 	}
 
-	fmt.Scan(&hapus)
-
-	if hapus < *n {
-		i = hapus - 1
-		for i < *n {
-			p[i] = p[i+1]
-			i++
-		}
-		*n = *n - 1
+	if *n == 0 {
+		fmt.Println("Data kosong")
 	} else {
-		*n = *n - 1
+		fmt.Scan(&hapus)
+
+		if hapus < *n {
+			i = hapus - 1
+			for i < *n {
+				p[i] = p[i+1]
+				i++
+			}
+			*n = *n - 1
+		} else {
+			*n = *n - 1
+		}
 	}
 }
 
@@ -737,12 +748,12 @@ func tambahP(p *tabProfile, n *int) {
 
 	i = 1
 
-	if *n >= 8 {
+	if *n > 7 {
 		fmt.Println("Data Penuh")
 	} else {
 
 		fmt.Scan(&newJob)
-		for newJob != "#" && i <= 2 {
+		for newJob != "#" && i < 3 {
 			j = 0
 			apyh = true
 			for j < *n && apyh == true {
