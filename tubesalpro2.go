@@ -530,10 +530,10 @@ func kecocokanUser(job *tabMinat, y int) {
 		fmt.Printf("%d. %s\n", i+1, job[i].title)
 	}
 
-	for i = 0; i <= y; i++ {
+	for i = 0; i < y; i++ {
 		fmt.Printf("Paling Minati ke-%d? ", i+1)
 		fmt.Scan(&x)
-		job[x-1].kodeUnik = job[x-1].kodeUnik + n
+		job[x-1].kodeUnik = job[x-1].kodeUnik + n
 		n--
 	}
 
@@ -753,7 +753,7 @@ func tambahP(p *tabProfile, n *int) {
 	} else {
 
 		fmt.Scan(&newJob)
-		for newJob != "#" && i < 3 {
+		for newJob != "#" && i <= 2 && *n < 8 {
 			j = 0
 			apyh = true
 			for j < *n && apyh == true {
@@ -764,11 +764,9 @@ func tambahP(p *tabProfile, n *int) {
 			if apyh == true {
 				p[*n].karir = newJob
 				*n = *n + 1
-
-				i++
-
-				fmt.Scan(&newJob)
 			}
+			i++
+			fmt.Scan(&newJob)
 
 		}
 	}
